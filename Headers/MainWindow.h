@@ -7,9 +7,9 @@
 #include <QMessageBox>
 #include <QScrollArea>
 
-#include <Headers/Canvas.h>
-#include <Headers/ResizeImage.h>
-#include <Headers/StretchImage.h>
+#include "Headers/Canvas.h"
+#include "Headers/ResizeImage.h"
+#include "Headers/StretchImage.h"
 
 namespace Ui
 { class MainWindow; }
