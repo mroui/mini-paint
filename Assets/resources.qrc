@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="Images/">
+        <file>Images/pencil.png</file>
+        <file>Images/eraser.png</file>
+        <file>Images/paintbucket.png</file>
+        <file>Images/circle.png</file>
+        <file>Images/line.png</file>
+        <file>Images/square.png</file>
+        <file>Images/triangle.png</file>
+        <file>Images/palette.png</file>
+    </qresource>
+</RCC>
