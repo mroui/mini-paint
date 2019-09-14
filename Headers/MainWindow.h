@@ -27,8 +27,20 @@ public:
     void ifFillThenColor(QColor);               //set fill color or brush color
     void setShapes(QString);                    //set shape of pencil
 
+
+protected:
+    void closeEvent(QCloseEvent *) override;    //close event
+
+
+private:
+    Ui::MainWindow *ui;                         //object of main window
+    Canvas * canvas;                            //drawing object
+    QColor previouspalettecolor;                //previous checked color in palette
+    QSizeGrip * sizeGrip;                       //grip to increase image
+
+
 private slots:
-    void on_Bialy_clicked();
+    void on_Bialy_clicked();                    //palette colors click events
     void on_Czarny_clicked();
     void on_Szary_clicked();
     void on_Czerwony_clicked();
@@ -40,33 +52,25 @@ private slots:
     void on_Pomaranczowy_clicked();
     void on_palette_2_clicked();
 
-protected:
-    void closeEvent(QCloseEvent *) override;
-
-private:
-    Ui::MainWindow *ui;
-    Canvas * canvas;                            //drawing object
-    QColor previouspalettecolor;                //previous checked color in palette
-    QSizeGrip * sizeGrip;                       //grip to increase image
 
 private slots:
-    void on_ButtonGumka_clicked();
+    void on_ButtonGumka_clicked();              //clicked/valuechanged events on toolbar
     void on_ButtonOlowek_clicked();
     void on_SpinBoxGruboscLinii_valueChanged(int);
     void on_ButtonLinia_clicked();
-    void on_ButtonKwadrat_clicked();            //clicked/valuechanged events on toolbar
+    void on_ButtonKwadrat_clicked();
     void on_ButtonKolo_clicked();
     void on_ButtonTrojkat_clicked();
     void on_ButtonWypelnienie_clicked();
 
-    void on_action_Nowy_triggered();
+    void on_action_Nowy_triggered();            //menubar/file events
     void on_action_Otworz_triggered();
-    void on_actionZapisz_jako_triggered();      //menubar/file events
+    void on_actionZapisz_jako_triggered();
     void on_actionZako_cz_triggered();
 
-    void on_actionWyczy_obraz_triggered();
+    void on_actionWyczy_obraz_triggered();      //menubar/image events
     void on_actionOdwr_kolory_triggered();
-    void on_actionOdwr_triggered();             //menubar/image events
+    void on_actionOdwr_triggered();
     void on_actionZmie_rozmiar_triggered();
     void on_actionRozci_gnij_triggered();
     void on_actionWytnij_triggered();
