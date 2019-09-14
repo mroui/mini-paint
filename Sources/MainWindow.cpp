@@ -88,13 +88,13 @@ void MainWindow::setShapes(QString string)
 
     if (string == "Pencil")
         canvas->setShapePen(true);
-    if (string == "Line")
+    else if (string == "Line")
         canvas->setShapeLine(true);
-    if (string == "Square")
+    else if (string == "Square")
         canvas->setShapeSquare(true);
-    if (string == "Circle")
+    else if (string == "Circle")
         canvas->setShapeCircle(true);
-    if (string == "Triangle")
+    else if (string == "Triangle")
         canvas->setShapeTriangle(true);
 }
 
@@ -106,13 +106,13 @@ void MainWindow::setShapes(QString string)
 void MainWindow::closeEvent(QCloseEvent * event)
 {
     event->ignore();
-    QMessageBox MBsave(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz wyjść bez zapisywania?"), QMessageBox::Yes | QMessageBox::No, this);
-    MBsave.setButtonText(QMessageBox::Yes, tr("Tak"));
-    MBsave.setButtonText(QMessageBox::No, tr("Nie"));
+    QMessageBox MBsave(QMessageBox::Question, tr("MiniPaint"), tr("Are you sure you want to exit without saving?"), QMessageBox::Yes | QMessageBox::No, this);
+    MBsave.setButtonText(QMessageBox::Yes, tr("Yes"));
+    MBsave.setButtonText(QMessageBox::No, tr("No"));
     MBsave.setDefaultButton(QMessageBox::No);
 
-    int buttonclicked = MBsave.exec();
-    switch(buttonclicked)
+    int choice = MBsave.exec();
+    switch(choice)
     {
         case QMessageBox::Yes:
             event->accept();
@@ -324,14 +324,14 @@ void MainWindow::on_New_triggered()
 
 void MainWindow::on_Open_triggered()
 {
-    QMessageBox MBsave(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
-    MBsave.setButtonText(QMessageBox::Yes, tr("Tak"));
-    MBsave.setButtonText(QMessageBox::No, tr("Nie"));
-    MBsave.setButtonText(QMessageBox::Cancel, tr("Anuluj"));
+    QMessageBox MBsave(QMessageBox::Question, tr("MiniPaint"), tr("Do you want to save changes?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+    MBsave.setButtonText(QMessageBox::Yes, tr("Yes"));
+    MBsave.setButtonText(QMessageBox::No, tr("No"));
+    MBsave.setButtonText(QMessageBox::Cancel, tr("Cancel"));
     MBsave.setDefaultButton(QMessageBox::Yes);
 
-    int buttonclicked = MBsave.exec();
-    switch(buttonclicked)
+    int choice = MBsave.exec();
+    switch(choice)
     {
         case QMessageBox::Yes:
             canvas->saveImage();
@@ -356,14 +356,14 @@ void MainWindow::on_Save_As_triggered()
 
 void MainWindow::on_Exit_triggered()
 {
-    QMessageBox MBsave(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
-    MBsave.setButtonText(QMessageBox::Yes, tr("Tak"));
-    MBsave.setButtonText(QMessageBox::No, tr("Nie"));
-    MBsave.setButtonText(QMessageBox::Cancel, tr("Anuluj"));
+    QMessageBox MBsave(QMessageBox::Question, tr("MiniPaint"), tr("Do you want to save changes?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+    MBsave.setButtonText(QMessageBox::Yes, tr("Yes"));
+    MBsave.setButtonText(QMessageBox::No, tr("No"));
+    MBsave.setButtonText(QMessageBox::Cancel, tr("Cancel"));
     MBsave.setDefaultButton(QMessageBox::Yes);
 
-    int buttonclicked = MBsave.exec();
-    switch(buttonclicked)
+    int choice = MBsave.exec();
+    switch(choice)
     {
         case QMessageBox::Yes:
             if (canvas->saveImage())
@@ -382,14 +382,14 @@ void MainWindow::on_Exit_triggered()
 
 void MainWindow::on_Clear_Image_triggered()
 {
-    QMessageBox MBsave(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
-    MBsave.setButtonText(QMessageBox::Yes, tr("Tak"));
-    MBsave.setButtonText(QMessageBox::No, tr("Nie"));
-    MBsave.setButtonText(QMessageBox::Cancel, tr("Anuluj"));
+    QMessageBox MBsave(QMessageBox::Question, tr("MiniPaint"), tr("Do you want to save changes?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+    MBsave.setButtonText(QMessageBox::Yes, tr("Yes"));
+    MBsave.setButtonText(QMessageBox::No, tr("No"));
+    MBsave.setButtonText(QMessageBox::Cancel, tr("Cancel"));
     MBsave.setDefaultButton(QMessageBox::Yes);
 
-    int buttonclicked = MBsave.exec();
-    switch(buttonclicked)
+    int choice = MBsave.exec();
+    switch(choice)
     {
         case QMessageBox::Yes:
             if(canvas->saveImage())
@@ -501,5 +501,5 @@ void MainWindow::on_Edit_Color_triggered()
 
 void MainWindow::on_About_triggered()
 {
-    QMessageBox::information(this, "MiniPaint", "Program: Mini Paint\nAutor: Martyna Rój \nWersja: 1.07", QMessageBox::Ok );
+    QMessageBox::information(this, "MiniPaint", "Program: MiniPaint\nAuthor: Martyna Roj \nVersion: 1.07", QMessageBox::Ok );
 }
