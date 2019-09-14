@@ -54,7 +54,7 @@ private slots:
 
 
 private slots:
-    void on_ButtonGumka_clicked();              //clicked/valuechanged events on toolbar
+    void on_ButtonGumka_clicked();              //click/valuechange events on toolbar
     void on_ButtonOlowek_clicked();
     void on_SpinBoxGruboscLinii_valueChanged(int);
     void on_ButtonLinia_clicked();
