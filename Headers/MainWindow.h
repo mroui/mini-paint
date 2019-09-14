@@ -23,8 +23,8 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
-    void setColorBiggerFunction();              //set brush color by check selected color on palette
-    void ifFillThenColor(QColor);               //set fill color or brush color
+    void setBrushColor();                       //set brush color by check selected color on palette
+    void setFillColor(QColor);                  //set fill color or brush color
     void setShapes(QString);                    //set shape of pencil
 
 
@@ -35,50 +35,50 @@ protected:
 private:
     Ui::MainWindow *ui;                         //object of main window
     Canvas * canvas;                            //drawing object
-    QColor previouspalettecolor;                //previous checked color in palette
+    QColor previousPaletteColor;                //previous checked color in palette
     QSizeGrip * sizeGrip;                       //grip to increase image
 
 
 private slots:
-    void on_Bialy_clicked();                    //palette colors click events
-    void on_Czarny_clicked();
-    void on_Szary_clicked();
-    void on_Czerwony_clicked();
-    void on_Zolty_clicked();
-    void on_Niebieski_clicked();
-    void on_Zielony_clicked();
-    void on_Rozowy_clicked();
-    void on_Fioletowy_clicked();
-    void on_Pomaranczowy_clicked();
-    void on_palette_2_clicked();
+    void on_White_clicked();                    //palette colors click events
+    void on_Black_clicked();
+    void on_Grey_clicked();
+    void on_Red_clicked();
+    void on_Yellow_clicked();
+    void on_Blue_clicked();
+    void on_Green_clicked();
+    void on_Pink_clicked();
+    void on_Purple_clicked();
+    void on_Orange_clicked();
+    void on_Palette_clicked();
 
 
 private slots:
-    void on_ButtonGumka_clicked();              //click/valuechange events on toolbar
-    void on_ButtonOlowek_clicked();
-    void on_SpinBoxGruboscLinii_valueChanged(int);
-    void on_ButtonLinia_clicked();
-    void on_ButtonKwadrat_clicked();
-    void on_ButtonKolo_clicked();
-    void on_ButtonTrojkat_clicked();
-    void on_ButtonWypelnienie_clicked();
+    void on_Rubber_clicked();                   //click/valuechange events on toolbar
+    void on_Pencil_clicked();
+    void on_Weight_valueChanged(int);
+    void on_Line_clicked();
+    void on_Square_clicked();
+    void on_Circle_clicked();
+    void on_Triangle_clicked();
+    void on_Fill_clicked();
 
-    void on_action_Nowy_triggered();            //menubar/file events
-    void on_action_Otworz_triggered();
-    void on_actionZapisz_jako_triggered();
-    void on_actionZako_cz_triggered();
+    void on_New_triggered();                    //menubar/file events
+    void on_Open_triggered();
+    void on_Save_As_triggered();
+    void on_Exit_triggered();
 
-    void on_actionWyczy_obraz_triggered();      //menubar/image events
-    void on_actionOdwr_kolory_triggered();
-    void on_actionOdwr_triggered();
-    void on_actionZmie_rozmiar_triggered();
-    void on_actionRozci_gnij_triggered();
-    void on_actionWytnij_triggered();
-    void on_actionWklej_triggered();
+    void on_Clear_Image_triggered();            //menubar/image events
+    void on_Invert_Colors_triggered();
+    void on_Rotate_triggered();
+    void on_Change_Size_triggered();
+    void on_Stretch_triggered();
+    void on_Cut_triggered();
+    void on_Paste_triggered();
 
-    void on_actionZmie_kolor_triggered();       //menubar/colors events
+    void on_Edit_Color_triggered();             //menubar/colors events
 
-    void on_actionO_Oprogramie_triggered();     //menubar/help events
+    void on_About_triggered();                  //menubar/help events
 };
 
 #endif // MAINWINDOW_H
