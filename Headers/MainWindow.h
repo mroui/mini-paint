@@ -37,6 +37,7 @@ private:
     Canvas * canvas;                            //drawing object
     QColor previousPaletteColor;                //previous checked color in palette
     QSizeGrip * sizeGrip;                       //grip to increase image
+    int initMBsave();                           //message box dialog with save question
 
 
 private slots:
