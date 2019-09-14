@@ -55,47 +55,47 @@
      <height>26</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_File">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>&amp;Plik</string>
+     <string>&amp;File</string>
     </property>
-    <addaction name="action_Nowy"/>
+    <addaction name="New"/>
     <addaction name="separator"/>
-    <addaction name="action_Otworz"/>
-    <addaction name="actionZapisz_jako"/>
+    <addaction name="Open"/>
+    <addaction name="Save_As"/>
     <addaction name="separator"/>
-    <addaction name="actionZako_cz"/>
+    <addaction name="Exit"/>
    </widget>
-   <widget class="QMenu" name="menuPomoc">
+   <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Pomoc</string>
+     <string>&amp;Help</string>
     </property>
-    <addaction name="actionO_Oprogramie"/>
+    <addaction name="About"/>
    </widget>
-   <widget class="QMenu" name="menuObraz">
+   <widget class="QMenu" name="menuImage">
     <property name="title">
-     <string>Obraz</string>
+     <string>&amp;Image</string>
     </property>
-    <addaction name="actionWytnij"/>
-    <addaction name="actionWklej"/>
+    <addaction name="Cut"/>
+    <addaction name="Paste"/>
     <addaction name="separator"/>
-    <addaction name="actionOdwr"/>
-    <addaction name="actionZmie_rozmiar"/>
-    <addaction name="actionRozci_gnij"/>
+    <addaction name="Rotate"/>
+    <addaction name="Change_Size"/>
+    <addaction name="Stretch"/>
     <addaction name="separator"/>
-    <addaction name="actionOdwr_kolory"/>
-    <addaction name="actionWyczy_obraz"/>
+    <addaction name="Invert_Colors"/>
+    <addaction name="Clear_Image"/>
    </widget>
-   <widget class="QMenu" name="menuKolory">
+   <widget class="QMenu" name="menuColors">
     <property name="title">
-     <string>Kolory</string>
+     <string>&amp;Colors</string>
     </property>
-    <addaction name="actionZmie_kolor"/>
+    <addaction name="Edit_Color"/>
    </widget>
-   <addaction name="menu_File"/>
-   <addaction name="menuObraz"/>
-   <addaction name="menuKolory"/>
-   <addaction name="menuPomoc"/>
+   <addaction name="menuFile"/>
+   <addaction name="menuImage"/>
+   <addaction name="menuColors"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget">
    <property name="minimumSize">
@@ -131,7 +131,7 @@
      </property>
      <layout class="QGridLayout" name="toolbar">
       <item row="0" column="1">
-       <widget class="QPushButton" name="ButtonGumka">
+       <widget class="QPushButton" name="Rubber">
         <property name="text">
          <string/>
         </property>
@@ -157,7 +157,7 @@
        </widget>
       </item>
       <item row="0" column="2">
-       <widget class="QPushButton" name="ButtonOlowek">
+       <widget class="QPushButton" name="Pencil">
         <property name="text">
          <string/>
         </property>
@@ -183,7 +183,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QPushButton" name="ButtonLinia">
+       <widget class="QPushButton" name="Line">
         <property name="text">
          <string/>
         </property>
@@ -209,7 +209,7 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QPushButton" name="ButtonKolo">
+       <widget class="QPushButton" name="Circle">
         <property name="text">
          <string/>
         </property>
@@ -235,7 +235,7 @@
        </widget>
       </item>
       <item row="3" column="2">
-       <widget class="QPushButton" name="ButtonTrojkat">
+       <widget class="QPushButton" name="Triangle">
         <property name="text">
          <string/>
         </property>
@@ -261,7 +261,7 @@
        </widget>
       </item>
       <item row="2" column="2">
-       <widget class="QPushButton" name="ButtonKwadrat">
+       <widget class="QPushButton" name="Square">
         <property name="text">
          <string/>
         </property>
@@ -287,7 +287,7 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QPushButton" name="ButtonWypelnienie">
+       <widget class="QPushButton" name="Fill">
         <property name="text">
          <string/>
         </property>
@@ -313,7 +313,7 @@
        </widget>
       </item>
       <item row="4" column="2">
-       <widget class="QSpinBox" name="SpinBoxGruboscLinii">
+       <widget class="QSpinBox" name="Weight">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -341,7 +341,7 @@
      </property>
      <layout class="QGridLayout" name="palette">
       <item row="0" column="1">
-       <widget class="QPushButton" name="Szary">
+       <widget class="QPushButton" name="Grey">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(134, 134, 134);</string>
         </property>
@@ -357,7 +357,7 @@
        </widget>
       </item>
       <item row="3" column="0">
-       <widget class="QPushButton" name="Zielony">
+       <widget class="QPushButton" name="Green">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(0, 255, 0)</string>
         </property>
@@ -373,7 +373,7 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QPushButton" name="Niebieski">
+       <widget class="QPushButton" name="Blue">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(0, 0, 255)</string>
         </property>
@@ -389,7 +389,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QPushButton" name="Czerwony">
+       <widget class="QPushButton" name="Red">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 0, 0);</string>
         </property>
@@ -405,7 +405,7 @@
        </widget>
       </item>
       <item row="2" column="0">
-       <widget class="QPushButton" name="Zolty">
+       <widget class="QPushButton" name="Yellow">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 0)</string>
         </property>
@@ -421,7 +421,7 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QPushButton" name="Pomaranczowy">
+       <widget class="QPushButton" name="Orange">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 85, 0)</string>
         </property>
@@ -437,7 +437,7 @@
        </widget>
       </item>
       <item row="4" column="0">
-       <widget class="QPushButton" name="Fioletowy">
+       <widget class="QPushButton" name="Purple">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(85, 0, 255)</string>
         </property>
@@ -453,7 +453,7 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QPushButton" name="Bialy">
+       <widget class="QPushButton" name="White">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 255, 255);</string>
         </property>
@@ -472,7 +472,7 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QPushButton" name="Rozowy">
+       <widget class="QPushButton" name="Pink">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(255, 0, 255)</string>
         </property>
@@ -488,7 +488,7 @@
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QPushButton" name="Czarny">
+       <widget class="QPushButton" name="Black">
         <property name="styleSheet">
          <string notr="true">background-color: rgb(0, 0, 0);</string>
         </property>
@@ -507,7 +507,7 @@
        </widget>
       </item>
       <item row="5" column="0" colspan="2">
-       <widget class="QPushButton" name="palette_2">
+       <widget class="QPushButton" name="Palette">
         <property name="text">
          <string/>
         </property>
@@ -533,96 +533,129 @@
     </widget>
    </widget>
   </widget>
-  <action name="action_Nowy">
+  <action name="New">
    <property name="text">
-    <string>&amp;Nowy</string>
+    <string>&amp;New</string>
    </property>
    <property name="toolTip">
-    <string>Nowy</string>
+    <string>New</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="action_Otworz">
+  <action name="Open">
    <property name="text">
-    <string>&amp;Otwórz...</string>
+    <string>&amp;Open...</string>
+   </property>
+   <property name="toolTip">
+    <string>Open</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="actionZako_cz">
+  <action name="Exit">
    <property name="text">
-    <string>Zakończ</string>
+    <string>Exit</string>
+   </property>
+   <property name="toolTip">
+    <string>Exit</string>
    </property>
   </action>
-  <action name="actionWyczy_obraz">
+  <action name="Clear_Image">
    <property name="text">
-    <string>Wyczyść obraz</string>
+    <string>Clear Image</string>
+   </property>
+   <property name="toolTip">
+    <string>Clear Image</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+N</string>
    </property>
   </action>
-  <action name="actionO_Oprogramie">
+  <action name="About">
    <property name="text">
-    <string>O Programie</string>
+    <string>About</string>
    </property>
    <property name="toolTip">
-    <string>O Programie</string>
+    <string>About</string>
    </property>
    <property name="shortcut">
     <string>F1</string>
    </property>
   </action>
-  <action name="actionZapisz_jako">
+  <action name="Save_As">
    <property name="text">
-    <string>Zapisz jako...</string>
+    <string>Save As...</string>
+   </property>
+   <property name="toolTip">
+    <string>Save As</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="actionZmie_rozmiar">
+  <action name="Change_Size">
    <property name="text">
-    <string>Zmień rozmiar...</string>
+    <string>Change Size...</string>
+   </property>
+   <property name="toolTip">
+    <string>Change Size</string>
    </property>
   </action>
-  <action name="actionZmie_kolor">
+  <action name="Edit_Color">
    <property name="text">
-    <string>Zmień kolor...</string>
+    <string>Edit Color...</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit Color</string>
    </property>
   </action>
-  <action name="actionOdwr_kolory">
+  <action name="Invert_Colors">
    <property name="text">
-    <string>Odwróć kolory</string>
+    <string>Invert Colors</string>
+   </property>
+   <property name="toolTip">
+    <string>Invert Colors</string>
    </property>
   </action>
-  <action name="actionOdwr">
+  <action name="Rotate">
    <property name="text">
-    <string>Odwróć obraz</string>
+    <string>Rotate Image</string>
+   </property>
+   <property name="toolTip">
+    <string>Rotate Image</string>
    </property>
   </action>
-  <action name="actionRozci_gnij">
+  <action name="Stretch">
    <property name="text">
-    <string>Rozciągnij...</string>
+    <string>Stretch...</string>
+   </property>
+   <property name="toolTip">
+    <string>Stretch</string>
    </property>
   </action>
-  <action name="actionWytnij">
+  <action name="Cut">
    <property name="text">
-    <string>Wytnij</string>
+    <string>Cut</string>
+   </property>
+   <property name="toolTip">
+    <string>Cut</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+X</string>
    </property>
   </action>
-  <action name="actionWklej">
+  <action name="Paste">
    <property name="checkable">
     <bool>false</bool>
    </property>
    <property name="text">
-    <string>Wklej</string>
+    <string>Paste</string>
+   </property>
+   <property name="toolTip">
+    <string>Paste</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+V</string>
