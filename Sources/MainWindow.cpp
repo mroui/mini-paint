@@ -20,11 +20,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     sizeGrip = new QSizeGrip(canvas);
     ui->gridLayout->addWidget(sizeGrip, 0,0,1,1,Qt::AlignBottom | Qt::AlignRight);
 
-    on_Czarny_clicked();
+    on_Black_clicked();
     canvas->setWidth(1);
 
-    ui->actionWytnij->setEnabled(true);
-    ui->actionWklej->setEnabled(false);
+    ui->Cut->setEnabled(true);
+    ui->Paste->setEnabled(false);
 }
 
 
@@ -38,39 +38,39 @@ MainWindow::~MainWindow()
 //---------------------------------------------------------------------------------
 
 
-void MainWindow::setColorBiggerFunction()
+void MainWindow::setBrushColor()
 {
     QColor color;
-    if (ui->Bialy->isChecked())
-        color = ui->Bialy->palette().color(QPalette::Button);
-    else if (ui->Czarny->isChecked())
-        color = ui->Czarny->palette().color(QPalette::Button);
-    else if (ui->Szary->isChecked())
-        color = ui->Szary->palette().color(QPalette::Button);
-    else if (ui->Czerwony->isChecked())
-        color = ui->Czerwony->palette().color(QPalette::Button);
-    else if (ui->Zolty->isChecked())
-        color = ui->Zolty->palette().color(QPalette::Button);
-    else if (ui->Niebieski->isChecked())
-        color = ui->Niebieski->palette().color(QPalette::Button);
-    else if (ui->Zielony->isChecked())
-        color = ui->Zielony->palette().color(QPalette::Button);
-    else if (ui->Rozowy->isChecked())
-        color = ui->Rozowy->palette().color(QPalette::Button);
-    else if (ui->Fioletowy->isChecked())
-        color = ui->Fioletowy->palette().color(QPalette::Button);
-    else if (ui->Pomaranczowy->isChecked())
-        color = ui->Pomaranczowy->palette().color(QPalette::Button);
-    else if (ui->palette_2->isChecked())
-        color = previouspalettecolor;
+    if (ui->White->isChecked())
+        color = ui->White->palette().color(QPalette::Button);
+    else if (ui->Black->isChecked())
+        color = ui->Black->palette().color(QPalette::Button);
+    else if (ui->Grey->isChecked())
+        color = ui->Grey->palette().color(QPalette::Button);
+    else if (ui->Red->isChecked())
+        color = ui->Red->palette().color(QPalette::Button);
+    else if (ui->Yellow->isChecked())
+        color = ui->Yellow->palette().color(QPalette::Button);
+    else if (ui->Blue->isChecked())
+        color = ui->Blue->palette().color(QPalette::Button);
+    else if (ui->Green->isChecked())
+        color = ui->Green->palette().color(QPalette::Button);
+    else if (ui->Pink->isChecked())
+        color = ui->Pink->palette().color(QPalette::Button);
+    else if (ui->Purple->isChecked())
+        color = ui->Purple->palette().color(QPalette::Button);
+    else if (ui->Orange->isChecked())
+        color = ui->Orange->palette().color(QPalette::Button);
+    else if (ui->Palette->isChecked())
+        color = previousPaletteColor;
 
     canvas->setColor(color);
 }
 
 
-void MainWindow::ifFillThenColor(QColor color)
+void MainWindow::setFillColor(QColor color)
 {
-    if(!ui->ButtonWypelnienie->isChecked())
+    if(!ui->Fill->isChecked())
         canvas->setColor(color);
     else canvas->setBrushColor(color);
 }
@@ -78,7 +78,7 @@ void MainWindow::ifFillThenColor(QColor color)
 
 void MainWindow::setShapes(QString string)
 {
-    setColorBiggerFunction();
+    setBrushColor();
 
     canvas->setShapePen(false);
     canvas->setShapeLine(false);
@@ -106,15 +106,12 @@ void MainWindow::setShapes(QString string)
 void MainWindow::closeEvent(QCloseEvent * event)
 {
     event->ignore();
-    QMessageBox MBzapis(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz wyjść bez zapisywania?"), QMessageBox::Yes | QMessageBox::No, this);
+    QMessageBox MBsave(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz wyjść bez zapisywania?"), QMessageBox::Yes | QMessageBox::No, this);
+    MBsave.setButtonText(QMessageBox::Yes, tr("Tak"));
+    MBsave.setButtonText(QMessageBox::No, tr("Nie"));
+    MBsave.setDefaultButton(QMessageBox::No);
 
-    MBzapis.setButtonText(QMessageBox::Yes, tr("Tak"));
-    MBzapis.setButtonText(QMessageBox::No, tr("Nie"));
-
-    MBzapis.setDefaultButton(QMessageBox::No);
-
-    int buttonclicked = MBzapis.exec();
-
+    int buttonclicked = MBsave.exec();
     switch(buttonclicked)
     {
         case QMessageBox::Yes:
@@ -130,71 +127,71 @@ void MainWindow::closeEvent(QCloseEvent * event)
 //---------------------------------------------------------------------------------
 
 
-void MainWindow::on_Bialy_clicked()
+void MainWindow::on_White_clicked()
 {
-    QColor color = ui->Bialy->palette().color(QPalette::Button);
-    ifFillThenColor(color);
+    QColor color = ui->White->palette().color(QPalette::Button);
+    setFillColor(color);
 }
 
-void MainWindow::on_Czarny_clicked()
+void MainWindow::on_Black_clicked()
 {
-    QColor color = ui->Czarny->palette().color(QPalette::Button);
-    ifFillThenColor(color);
+    QColor color = ui->Black->palette().color(QPalette::Button);
+    setFillColor(color);
 }
 
-void MainWindow::on_Szary_clicked()
+void MainWindow::on_Grey_clicked()
 {
-    QColor color = ui->Szary->palette().color(QPalette::Button);
-    ifFillThenColor(color);
+    QColor color = ui->Grey->palette().color(QPalette::Button);
+    setFillColor(color);
 }
 
-void MainWindow::on_Czerwony_clicked()
+void MainWindow::on_Red_clicked()
 {
-    QColor color = ui->Czerwony->palette().color(QPalette::Button);
-    ifFillThenColor(color);
+    QColor color = ui->Red->palette().color(QPalette::Button);
+    setFillColor(color);
 }
 
-void MainWindow::on_Zolty_clicked()
+void MainWindow::on_Yellow_clicked()
 {
-    QColor color = ui->Zolty->palette().color(QPalette::Button);
-    ifFillThenColor(color);
+    QColor color = ui->Yellow->palette().color(QPalette::Button);
+    setFillColor(color);
 }
 
-void MainWindow::on_Niebieski_clicked()
+void MainWindow::on_Blue_clicked()
 {
-    QColor color = ui->Niebieski->palette().color(QPalette::Button);
-    ifFillThenColor(color);
+    QColor color = ui->Blue->palette().color(QPalette::Button);
+    setFillColor(color);
 }
 
-void MainWindow::on_Zielony_clicked()
+void MainWindow::on_Green_clicked()
 {
-    QColor color = ui->Zielony->palette().color(QPalette::Button);
-    ifFillThenColor(color);
+    QColor color = ui->Green->palette().color(QPalette::Button);
+    setFillColor(color);
 }
 
-void MainWindow::on_Rozowy_clicked()
+void MainWindow::on_Pink_clicked()
 {
-    QColor color = ui->Rozowy->palette().color(QPalette::Button);
-    ifFillThenColor(color);
+    QColor color = ui->Pink->palette().color(QPalette::Button);
+    setFillColor(color);
 }
 
-void MainWindow::on_Fioletowy_clicked()
+void MainWindow::on_Purple_clicked()
 {
-    QColor color = ui->Fioletowy->palette().color(QPalette::Button);
-    ifFillThenColor(color);
+    QColor color = ui->Purple->palette().color(QPalette::Button);
+    setFillColor(color);
 }
 
-void MainWindow::on_Pomaranczowy_clicked()
+void MainWindow::on_Orange_clicked()
 {
-    QColor color = ui->Pomaranczowy->palette().color(QPalette::Button);
-    ifFillThenColor(color);
+    QColor color = ui->Orange->palette().color(QPalette::Button);
+    setFillColor(color);
 }
 
-void MainWindow::on_palette_2_clicked()
+void MainWindow::on_Palette_clicked()
 {
     QColor color = QColorDialog::getColor();
-    previouspalettecolor = color;
-    ifFillThenColor(color);
+    previousPaletteColor = color;
+    setFillColor(color);
 }
 
 
@@ -202,85 +199,85 @@ void MainWindow::on_palette_2_clicked()
 //-----------------------------------------------------------------------------------
 
 
-void MainWindow::on_SpinBoxGruboscLinii_valueChanged(int width)
+void MainWindow::on_Weight_valueChanged(int width)
 {
     canvas->setWidth(width);
 }
 
 
-void MainWindow::on_ButtonGumka_clicked()
+void MainWindow::on_Rubber_clicked()
 {
-    on_ButtonOlowek_clicked();
+    on_Pencil_clicked();  //same settings like pencil
     canvas->setColor(Qt::white);
 }
 
 
-void MainWindow::on_ButtonOlowek_clicked()
+void MainWindow::on_Pencil_clicked()
 {
     setShapes("Pencil");
     canvas->setFloodFill(false);
-    ui->ButtonWypelnienie->setChecked(false);
+    ui->Fill->setChecked(false);
 }
 
 
-void MainWindow::on_ButtonLinia_clicked()
+void MainWindow::on_Line_clicked()
 {
     setShapes("Line");
     canvas->setFloodFill(false);
-    ui->ButtonWypelnienie->setChecked(false);
+    ui->Fill->setChecked(false);
 }
 
 
-void MainWindow::on_ButtonKwadrat_clicked()
+void MainWindow::on_Square_clicked()
 {
     setShapes("Square");
 }
 
 
-void MainWindow::on_ButtonKolo_clicked()
+void MainWindow::on_Circle_clicked()
 {
     setShapes("Circle");
 }
 
 
-void MainWindow::on_ButtonTrojkat_clicked()
+void MainWindow::on_Triangle_clicked()
 {
     setShapes("Triangle");
 }
 
 
-void MainWindow::on_ButtonWypelnienie_clicked()
+void MainWindow::on_Fill_clicked()
 {
-    if (ui->ButtonOlowek->isChecked() || ui->ButtonGumka->isChecked() || ui->ButtonLinia->isChecked())
-        ui->ButtonWypelnienie->setChecked(false);
+    if (ui->Pencil->isChecked() || ui->Rubber->isChecked() || ui->Line->isChecked())
+        ui->Fill->setChecked(false);
 
     if (!canvas->getFloodFill())
     {
         canvas->setFloodFill(true);
 
         QColor brushcolor;
-        if (ui->Bialy->isChecked())
-            brushcolor = ui->Bialy->palette().color(QPalette::Button);
-        else if (ui->Czarny->isChecked())
-            brushcolor = ui->Czarny->palette().color(QPalette::Button);
-        else if (ui->Szary->isChecked())
-            brushcolor = ui->Szary->palette().color(QPalette::Button);
-        else if (ui->Czerwony->isChecked())
-            brushcolor = ui->Czerwony->palette().color(QPalette::Button);
-        else if (ui->Zolty->isChecked())
-            brushcolor = ui->Zolty->palette().color(QPalette::Button);
-        else if (ui->Niebieski->isChecked())
-            brushcolor = ui->Niebieski->palette().color(QPalette::Button);
-        else if (ui->Zielony->isChecked())
-            brushcolor = ui->Zielony->palette().color(QPalette::Button);
-        else if (ui->Rozowy->isChecked())
-            brushcolor = ui->Rozowy->palette().color(QPalette::Button);
-        else if (ui->Fioletowy->isChecked())
-            brushcolor = ui->Fioletowy->palette().color(QPalette::Button);
-        else if (ui->Pomaranczowy->isChecked())
-            brushcolor = ui->Pomaranczowy->palette().color(QPalette::Button);
-        else if (ui->palette_2->isChecked())
-            brushcolor = previouspalettecolor;
+        if (ui->White->isChecked())
+            brushcolor = ui->White->palette().color(QPalette::Button);
+        else if (ui->Black->isChecked())
+            brushcolor = ui->Black->palette().color(QPalette::Button);
+        else if (ui->Grey->isChecked())
+            brushcolor = ui->Grey->palette().color(QPalette::Button);
+        else if (ui->Red->isChecked())
+            brushcolor = ui->Red->palette().color(QPalette::Button);
+        else if (ui->Yellow->isChecked())
+            brushcolor = ui->Yellow->palette().color(QPalette::Button);
+        else if (ui->Blue->isChecked())
+            brushcolor = ui->Blue->palette().color(QPalette::Button);
+        else if (ui->Green->isChecked())
+            brushcolor = ui->Green->palette().color(QPalette::Button);
+        else if (ui->Pink->isChecked())
+            brushcolor = ui->Pink->palette().color(QPalette::Button);
+        else if (ui->Purple->isChecked())
+            brushcolor = ui->Purple->palette().color(QPalette::Button);
+        else if (ui->Orange->isChecked())
+            brushcolor = ui->Orange->palette().color(QPalette::Button);
+        else if (ui->Palette->isChecked())
+            brushcolor = previousPaletteColor;
 
         canvas->setBrushColor(brushcolor);
     }
@@ -289,28 +286,28 @@ void MainWindow::on_ButtonWypelnienie_clicked()
         canvas->setFloodFill(false);
 
         QColor color = canvas->getColor();
-        if (color == ui->Bialy->palette().color(QPalette::Button))
-            ui->Bialy->setChecked(true);
-        else if (color == ui->Czarny->palette().color(QPalette::Button))
-            ui->Czarny->setChecked(true);
-        else if (color == ui->Szary->palette().color(QPalette::Button))
-            ui->Szary->setChecked(true);
-        else if (color == ui->Czerwony->palette().color(QPalette::Button))
-            ui->Czerwony->setChecked(true);
-        else if (color == ui->Zolty->palette().color(QPalette::Button))
-            ui->Zolty->setChecked(true);
-        else if (color == ui->Niebieski->palette().color(QPalette::Button))
-            ui->Niebieski->setChecked(true);
-        else if (color == ui->Zielony->palette().color(QPalette::Button))
-            ui->Zielony->setChecked(true);
-        else if (color == ui->Rozowy->palette().color(QPalette::Button))
-            ui->Rozowy->setChecked(true);
-        else if (color == ui->Fioletowy->palette().color(QPalette::Button))
-            ui->Fioletowy->setChecked(true);
-        else if (color == ui->Pomaranczowy->palette().color(QPalette::Button))
-            ui->Pomaranczowy->setChecked(true);
+        if (color == ui->White->palette().color(QPalette::Button))
+            ui->White->setChecked(true);
+        else if (color == ui->Black->palette().color(QPalette::Button))
+            ui->Black->setChecked(true);
+        else if (color == ui->Grey->palette().color(QPalette::Button))
+            ui->Grey->setChecked(true);
+        else if (color == ui->Red->palette().color(QPalette::Button))
+            ui->Red->setChecked(true);
+        else if (color == ui->Yellow->palette().color(QPalette::Button))
+            ui->Yellow->setChecked(true);
+        else if (color == ui->Blue->palette().color(QPalette::Button))
+            ui->Blue->setChecked(true);
+        else if (color == ui->Green->palette().color(QPalette::Button))
+            ui->Green->setChecked(true);
+        else if (color == ui->Pink->palette().color(QPalette::Button))
+            ui->Pink->setChecked(true);
+        else if (color == ui->Purple->palette().color(QPalette::Button))
+            ui->Purple->setChecked(true);
+        else if (color == ui->Orange->palette().color(QPalette::Button))
+            ui->Orange->setChecked(true);
         else
-            ui->palette_2->setChecked(true);
+            ui->Palette->setChecked(true);
     }
 }
 
@@ -319,24 +316,21 @@ void MainWindow::on_ButtonWypelnienie_clicked()
 //----------------------------------------------------------------------------------
 
 
-void MainWindow::on_action_Nowy_triggered()
+void MainWindow::on_New_triggered()
 {
-    on_actionWyczy_obraz_triggered();
+    on_Clear_Image_triggered();
 }
 
 
-void MainWindow::on_action_Otworz_triggered()
+void MainWindow::on_Open_triggered()
 {
-    QMessageBox MBzapis(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+    QMessageBox MBsave(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+    MBsave.setButtonText(QMessageBox::Yes, tr("Tak"));
+    MBsave.setButtonText(QMessageBox::No, tr("Nie"));
+    MBsave.setButtonText(QMessageBox::Cancel, tr("Anuluj"));
+    MBsave.setDefaultButton(QMessageBox::Yes);
 
-    MBzapis.setButtonText(QMessageBox::Yes, tr("Tak"));
-    MBzapis.setButtonText(QMessageBox::No, tr("Nie"));
-    MBzapis.setButtonText(QMessageBox::Cancel, tr("Anuluj"));
-
-    MBzapis.setDefaultButton(QMessageBox::Yes);
-
-    int buttonclicked = MBzapis.exec();
-
+    int buttonclicked = MBsave.exec();
     switch(buttonclicked)
     {
         case QMessageBox::Yes:
@@ -354,24 +348,21 @@ void MainWindow::on_action_Otworz_triggered()
 }
 
 
-void MainWindow::on_actionZapisz_jako_triggered()
+void MainWindow::on_Save_As_triggered()
 {
     canvas->saveImage();
 }
 
 
-void MainWindow::on_actionZako_cz_triggered()
+void MainWindow::on_Exit_triggered()
 {
-    QMessageBox MBzapis(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+    QMessageBox MBsave(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+    MBsave.setButtonText(QMessageBox::Yes, tr("Tak"));
+    MBsave.setButtonText(QMessageBox::No, tr("Nie"));
+    MBsave.setButtonText(QMessageBox::Cancel, tr("Anuluj"));
+    MBsave.setDefaultButton(QMessageBox::Yes);
 
-    MBzapis.setButtonText(QMessageBox::Yes, tr("Tak"));
-    MBzapis.setButtonText(QMessageBox::No, tr("Nie"));
-    MBzapis.setButtonText(QMessageBox::Cancel, tr("Anuluj"));
-
-    MBzapis.setDefaultButton(QMessageBox::Yes);
-
-    int buttonclicked = MBzapis.exec();
-
+    int buttonclicked = MBsave.exec();
     switch(buttonclicked)
     {
         case QMessageBox::Yes:
@@ -389,18 +380,15 @@ void MainWindow::on_actionZako_cz_triggered()
 //----------------------------------------------------------------------------------
 
 
-void MainWindow::on_actionWyczy_obraz_triggered()
+void MainWindow::on_Clear_Image_triggered()
 {
-    QMessageBox MBzapis(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+    QMessageBox MBsave(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+    MBsave.setButtonText(QMessageBox::Yes, tr("Tak"));
+    MBsave.setButtonText(QMessageBox::No, tr("Nie"));
+    MBsave.setButtonText(QMessageBox::Cancel, tr("Anuluj"));
+    MBsave.setDefaultButton(QMessageBox::Yes);
 
-    MBzapis.setButtonText(QMessageBox::Yes, tr("Tak"));
-    MBzapis.setButtonText(QMessageBox::No, tr("Nie"));
-    MBzapis.setButtonText(QMessageBox::Cancel, tr("Anuluj"));
-
-    MBzapis.setDefaultButton(QMessageBox::Yes);
-
-    int buttonclicked = MBzapis.exec();
-
+    int buttonclicked = MBsave.exec();
     switch(buttonclicked)
     {
         case QMessageBox::Yes:
@@ -414,13 +402,13 @@ void MainWindow::on_actionWyczy_obraz_triggered()
 }
 
 
-void MainWindow::on_actionOdwr_kolory_triggered()
+void MainWindow::on_Invert_Colors_triggered()
 {
     canvas->invertColors();
 }
 
 
-void MainWindow::on_actionOdwr_triggered()
+void MainWindow::on_Rotate_triggered()
 {
     QPoint center = canvas->getImage().rect().center();
     QMatrix matrix;
@@ -438,7 +426,7 @@ void MainWindow::on_actionOdwr_triggered()
 }
 
 
-void MainWindow::on_actionZmie_rozmiar_triggered()
+void MainWindow::on_Change_Size_triggered()
 {
     resizeimg resizeimg;
     resizeimg.setModal(false);
@@ -457,7 +445,7 @@ void MainWindow::on_actionZmie_rozmiar_triggered()
 }
 
 
-void MainWindow::on_actionRozci_gnij_triggered()
+void MainWindow::on_Stretch_triggered()
 {
     stretchimg stretchimg;
     stretchimg.setModal(false);
@@ -480,19 +468,19 @@ void MainWindow::on_actionRozci_gnij_triggered()
 }
 
 
-void MainWindow::on_actionWytnij_triggered()
+void MainWindow::on_Cut_triggered()
 {
     canvas->cutImage();
-    ui->actionWytnij->setEnabled(false);
-    ui->actionWklej->setEnabled(true);
+    ui->Cut->setEnabled(false);
+    ui->Paste->setEnabled(true);
 }
 
 
-void MainWindow::on_actionWklej_triggered()
+void MainWindow::on_Paste_triggered()
 {
     canvas->pasteImage();
-    ui->actionWytnij->setEnabled(true);
-    ui->actionWklej->setEnabled(false);
+    ui->Cut->setEnabled(true);
+    ui->Paste->setEnabled(false);
 }
 
 
@@ -500,10 +488,10 @@ void MainWindow::on_actionWklej_triggered()
 //----------------------------------------------------------------------------------
 
 
-void MainWindow::on_actionZmie_kolor_triggered()
+void MainWindow::on_Edit_Color_triggered()
 {
-    on_palette_2_clicked();
-    ui->palette_2->setChecked(true);
+    on_Palette_clicked();
+    ui->Palette->setChecked(true);
 }
 
 
@@ -511,7 +499,7 @@ void MainWindow::on_actionZmie_kolor_triggered()
 //----------------------------------------------------------------------------------
 
 
-void MainWindow::on_actionO_Oprogramie_triggered()
+void MainWindow::on_About_triggered()
 {
     QMessageBox::information(this, "MiniPaint", "Program: Mini Paint\nAutor: Martyna Rój \nWersja: 1.07", QMessageBox::Ok );
 }
