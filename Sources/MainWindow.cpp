@@ -2,10 +2,7 @@
 #include "ui_MainWindow.h"
 
 
-
-//stworzenie obiektu obrazu, dodanie scrolla i samego obrazu na widgecie, dodanie suwaka do widgetu
-//defaultowo klikniety czarny kolor pedzla (on_czarny_clicked()) i ustalona szerokosc pedzla 1
-//dodatkowo wygaszona opcja wklejenia obrazu a wlaczona opcja wyciecia
+//set default settings & initiate objects
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -36,9 +33,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-//---------------------------------------------------------------------------------funkcje publiczne: setColorBiggerFunction() i ifFillThenColor()
 
-//sprawdza po kazdym przycisku koloru czy jest wcisniety - ten zostaje ustawiony jako kolor pedzla
+//public methods
+//---------------------------------------------------------------------------------
+
+
 void MainWindow::setColorBiggerFunction()
 {
     QColor color;
@@ -69,7 +68,6 @@ void MainWindow::setColorBiggerFunction()
 }
 
 
-//sprawdza czy wcisniety przycisk wypelniania - jesli tak to ustawia kolor wypelnienia, jak nie - pedzla
 void MainWindow::ifFillThenColor(QColor color)
 {
     if(!ui->ButtonWypelnienie->isChecked())
@@ -78,8 +76,6 @@ void MainWindow::ifFillThenColor(QColor color)
 }
 
 
-//ustawia kolor w zaleznosci od kliknietego koloru (setColorBiggerFunction)
-//ustawia ksztalty na false poza tym w argumencie
 void MainWindow::setShapes(QString string)
 {
     setColorBiggerFunction();
@@ -101,92 +97,12 @@ void MainWindow::setShapes(QString string)
     if (string == "Triangle")
         canvas->setShapeTriangle(true);
 }
-//---------------------------------------------------------------------------------click kolory
-
-void MainWindow::on_Bialy_clicked()
-{
-    QColor color = ui->Bialy->palette().color(QPalette::Button);
-
-    ifFillThenColor(color);
-}
-
-void MainWindow::on_Czarny_clicked()
-{
-    QColor color = ui->Czarny->palette().color(QPalette::Button);
-
-    ifFillThenColor(color);
-}
-
-void MainWindow::on_Szary_clicked()
-{
-    QColor color = ui->Szary->palette().color(QPalette::Button);
-
-    ifFillThenColor(color);
-}
-
-void MainWindow::on_Czerwony_clicked()
-{
-    QColor color = ui->Czerwony->palette().color(QPalette::Button);
-
-    ifFillThenColor(color);
-}
-
-void MainWindow::on_Zolty_clicked()
-{
-    QColor color = ui->Zolty->palette().color(QPalette::Button);
-
-    ifFillThenColor(color);
-}
-
-void MainWindow::on_Niebieski_clicked()
-{
-    QColor color = ui->Niebieski->palette().color(QPalette::Button);
-
-    ifFillThenColor(color);
-}
-
-void MainWindow::on_Zielony_clicked()
-{
-    QColor color = ui->Zielony->palette().color(QPalette::Button);
-
-    ifFillThenColor(color);
-}
-
-void MainWindow::on_Rozowy_clicked()
-{
-    QColor color = ui->Rozowy->palette().color(QPalette::Button);
-
-    ifFillThenColor(color);
-}
-
-void MainWindow::on_Fioletowy_clicked()
-{
-    QColor color = ui->Fioletowy->palette().color(QPalette::Button);
-
-    ifFillThenColor(color);
-}
-
-void MainWindow::on_Pomaranczowy_clicked()
-{
-    QColor color = ui->Pomaranczowy->palette().color(QPalette::Button);
-
-    ifFillThenColor(color);
-}
-
-void MainWindow::on_palette_2_clicked()
-{
-    QColor color = QColorDialog::getColor();
-    previouspalettecolor = color;
-
-    ifFillThenColor(color);
-}
 
 
+//close window event
+//-----------------------------------------------------------------------------------
 
-//-----------------------------------------------------------------------------------zamkniecie okna event
 
-
-//przed zamknieciem okna wyrzuca messageboxa czy napewno chce wyjsc bez zapisywania - jesli tak to zamyka, jak nie to nic
 void MainWindow::closeEvent(QCloseEvent * event)
 {
     event->ignore();
@@ -210,70 +126,130 @@ void MainWindow::closeEvent(QCloseEvent * event)
 }
 
 
-//-----------------------------------------------------------------------------------click toolsy
+//palette colors click events
+//---------------------------------------------------------------------------------
 
 
-//ustawia grubosc pedzla
-void MainWindow::on_SpinBoxGruboscLinii_valueChanged(int width)                                            //GRUBOSC PEDZLA
+void MainWindow::on_Bialy_clicked()
+{
+    QColor color = ui->Bialy->palette().color(QPalette::Button);
+    ifFillThenColor(color);
+}
+
+void MainWindow::on_Czarny_clicked()
+{
+    QColor color = ui->Czarny->palette().color(QPalette::Button);
+    ifFillThenColor(color);
+}
+
+void MainWindow::on_Szary_clicked()
+{
+    QColor color = ui->Szary->palette().color(QPalette::Button);
+    ifFillThenColor(color);
+}
+
+void MainWindow::on_Czerwony_clicked()
+{
+    QColor color = ui->Czerwony->palette().color(QPalette::Button);
+    ifFillThenColor(color);
+}
+
+void MainWindow::on_Zolty_clicked()
+{
+    QColor color = ui->Zolty->palette().color(QPalette::Button);
+    ifFillThenColor(color);
+}
+
+void MainWindow::on_Niebieski_clicked()
+{
+    QColor color = ui->Niebieski->palette().color(QPalette::Button);
+    ifFillThenColor(color);
+}
+
+void MainWindow::on_Zielony_clicked()
+{
+    QColor color = ui->Zielony->palette().color(QPalette::Button);
+    ifFillThenColor(color);
+}
+
+void MainWindow::on_Rozowy_clicked()
+{
+    QColor color = ui->Rozowy->palette().color(QPalette::Button);
+    ifFillThenColor(color);
+}
+
+void MainWindow::on_Fioletowy_clicked()
+{
+    QColor color = ui->Fioletowy->palette().color(QPalette::Button);
+    ifFillThenColor(color);
+}
+
+void MainWindow::on_Pomaranczowy_clicked()
+{
+    QColor color = ui->Pomaranczowy->palette().color(QPalette::Button);
+    ifFillThenColor(color);
+}
+
+void MainWindow::on_palette_2_clicked()
+{
+    QColor color = QColorDialog::getColor();
+    previouspalettecolor = color;
+    ifFillThenColor(color);
+}
+
+
+//click/valuechange events on toolbar
+//-----------------------------------------------------------------------------------
+
+
+void MainWindow::on_SpinBoxGruboscLinii_valueChanged(int width)
 {
     canvas->setWidth(width);
 }
 
 
-//dziala jak olowek (mazanie) - wiec wywolywane jest klikniecie olowka + zmienia kolor na bialy
-void MainWindow::on_ButtonGumka_clicked()                                                                  //GUMKA
+void MainWindow::on_ButtonGumka_clicked()
 {
     on_ButtonOlowek_clicked();
     canvas->setColor(Qt::white);
 }
 
 
-//ustawia kolor+ksztalt olowka i wylacza wypelninie (nie wypelnia sie olowka)
-void MainWindow::on_ButtonOlowek_clicked()                                                                 //OLOWEK
+void MainWindow::on_ButtonOlowek_clicked()
 {
     setShapes("Pencil");
-
     canvas->setFloodFill(false);
     ui->ButtonWypelnienie->setChecked(false);
 }
 
 
-//ustawia kolor+ksztalt linii i wylacza wypelninie (nie wypelnia sie linii)
-void MainWindow::on_ButtonLinia_clicked()                                                                  //LINIA
+void MainWindow::on_ButtonLinia_clicked()
 {
     setShapes("Line");
-
     canvas->setFloodFill(false);
     ui->ButtonWypelnienie->setChecked(false);
 }
 
 
-//ustawia kolor+ksztalt kwadratu
-void MainWindow::on_ButtonKwadrat_clicked()                                                                //KWADRAT
+void MainWindow::on_ButtonKwadrat_clicked()
 {
     setShapes("Square");
 }
 
 
-//ustawia kolor+ksztalt kola
-void MainWindow::on_ButtonKolo_clicked()                                                                   //KOLO
+void MainWindow::on_ButtonKolo_clicked()
 {
     setShapes("Circle");
 }
 
 
-//ustawia kolor+ksztalt trojkata
-void MainWindow::on_ButtonTrojkat_clicked()                                                                //TROJKAT
+void MainWindow::on_ButtonTrojkat_clicked()
 {
     setShapes("Triangle");
 }
 
 
-//wypelnienie - sczytuje czy zaznaczone sa ksztalty olowka/gumki/linii - wtedy nie ma wypelniania
-//wiec ustawia na false,
-//sprawdza czy jest wylaczone wypelnianie - wtedy ustawia na true i ustawia kolor wypelnienia
-//jesli wlaczone - to je wylacza i ustawia poprzedni (przed kliknieciem wypelnienia) kolor pedzla
-void MainWindow::on_ButtonWypelnienie_clicked()                                                            //WYPELNIENIE
+void MainWindow::on_ButtonWypelnienie_clicked()
 {
     if (ui->ButtonOlowek->isChecked() || ui->ButtonGumka->isChecked() || ui->ButtonLinia->isChecked())
         ui->ButtonWypelnienie->setChecked(false);
@@ -308,7 +284,6 @@ void MainWindow::on_ButtonWypelnienie_clicked()                                 
 
         canvas->setBrushColor(brushcolor);
     }
-
     else
     {
         canvas->setFloodFill(false);
@@ -340,89 +315,16 @@ void MainWindow::on_ButtonWypelnienie_clicked()                                 
 }
 
 
-
-//----------------------------------------------------------------------------------click menubar
-
-
-//wyczyszczenie obrazu - messagebox czy zapisac obraz potem czysci obraz
-void MainWindow::on_actionWyczy_obraz_triggered()
-{
-    QMessageBox MBzapis(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
-
-    MBzapis.setButtonText(QMessageBox::Yes, tr("Tak"));
-    MBzapis.setButtonText(QMessageBox::No, tr("Nie"));
-    MBzapis.setButtonText(QMessageBox::Cancel, tr("Anuluj"));
-
-    MBzapis.setDefaultButton(QMessageBox::Yes);
-
-    int buttonclicked = MBzapis.exec();
-
-    switch(buttonclicked)
-    {
-        case QMessageBox::Yes:
-            if(canvas->saveImage())
-                canvas->clear();
-            break;
-        case QMessageBox::No:
-            canvas->clear();
-            break;
-    }
-}
+//menubar/file events
+//----------------------------------------------------------------------------------
 
 
-
-//zapis obrazu
-void MainWindow::on_actionZapisz_jako_triggered()
-{
-    canvas->saveImage();
-}
-
-
-
-//wyjscie z programu - messagebox czy zapisac obraz potem zamyka aplikacje
-void MainWindow::on_actionZako_cz_triggered()
-{
-    QMessageBox MBzapis(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
-
-    MBzapis.setButtonText(QMessageBox::Yes, tr("Tak"));
-    MBzapis.setButtonText(QMessageBox::No, tr("Nie"));
-    MBzapis.setButtonText(QMessageBox::Cancel, tr("Anuluj"));
-
-    MBzapis.setDefaultButton(QMessageBox::Yes);
-
-    int buttonclicked = MBzapis.exec();
-
-    switch(buttonclicked)
-    {
-        case QMessageBox::Yes:
-            if (canvas->saveImage())
-                QApplication::quit();
-            break;
-        case QMessageBox::No:
-            QApplication::quit();
-            break;
-    }
-}
-
-
-
-//nowy obraz - to samo co wyczyszczenie
 void MainWindow::on_action_Nowy_triggered()
 {
     on_actionWyczy_obraz_triggered();
 }
 
 
-
-//o programie - messagebox o programie
-void MainWindow::on_actionO_Oprogramie_triggered()
-{
-    QMessageBox::information(this, "MiniPaint", "Program: Mini Paint\nAutor: Martyna Rój \nWersja: 1.07", QMessageBox::Ok );
-}
-
-
-
-//otworz obraz - messagebox czy zapisac obraz potem zapisz->otworz->resize widgetu i obrazka LUB otworz->resize widgetu i obrazka
 void MainWindow::on_action_Otworz_triggered()
 {
     QMessageBox MBzapis(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
@@ -452,26 +354,72 @@ void MainWindow::on_action_Otworz_triggered()
 }
 
 
-
-//zmien kolor - otwiera okno z paleta i zaznacza button balety na zaznaczony
-void MainWindow::on_actionZmie_kolor_triggered()
+void MainWindow::on_actionZapisz_jako_triggered()
 {
-    on_palette_2_clicked();
-    ui->palette_2->setChecked(true);
+    canvas->saveImage();
 }
 
 
+void MainWindow::on_actionZako_cz_triggered()
+{
+    QMessageBox MBzapis(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
 
-//odwroc kolory
+    MBzapis.setButtonText(QMessageBox::Yes, tr("Tak"));
+    MBzapis.setButtonText(QMessageBox::No, tr("Nie"));
+    MBzapis.setButtonText(QMessageBox::Cancel, tr("Anuluj"));
+
+    MBzapis.setDefaultButton(QMessageBox::Yes);
+
+    int buttonclicked = MBzapis.exec();
+
+    switch(buttonclicked)
+    {
+        case QMessageBox::Yes:
+            if (canvas->saveImage())
+                QApplication::quit();
+            break;
+        case QMessageBox::No:
+            QApplication::quit();
+            break;
+    }
+}
+
+
+//menubar/image events
+//----------------------------------------------------------------------------------
+
+
+void MainWindow::on_actionWyczy_obraz_triggered()
+{
+    QMessageBox MBzapis(QMessageBox::Question, tr("MiniPaint"), tr("Czy chcesz zapisać obraz?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
+
+    MBzapis.setButtonText(QMessageBox::Yes, tr("Tak"));
+    MBzapis.setButtonText(QMessageBox::No, tr("Nie"));
+    MBzapis.setButtonText(QMessageBox::Cancel, tr("Anuluj"));
+
+    MBzapis.setDefaultButton(QMessageBox::Yes);
+
+    int buttonclicked = MBzapis.exec();
+
+    switch(buttonclicked)
+    {
+        case QMessageBox::Yes:
+            if(canvas->saveImage())
+                canvas->clear();
+            break;
+        case QMessageBox::No:
+            canvas->clear();
+            break;
+    }
+}
+
+
 void MainWindow::on_actionOdwr_kolory_triggered()
 {
     canvas->invertColors();
 }
 
 
-
-//odwrocenie obrazu - bierze centralny pkt obrazu i ustala macierz, ktora obraca o 90*
-//czysci obrazek ze spodu i wstawia nowy obrocony + resize widgetu i okna
 void MainWindow::on_actionOdwr_triggered()
 {
     QPoint center = canvas->getImage().rect().center();
@@ -490,18 +438,15 @@ void MainWindow::on_actionOdwr_triggered()
 }
 
 
-
-//zmien rozmiar - tworzy obiekt resizeimg ktory ma okno na wpisywanie nowych wartosci
-//sczytuje je i resizeuje widget i obrazek
 void MainWindow::on_actionZmie_rozmiar_triggered()
 {
     resizeimg resizeimg;
-    resizeimg.setModal(false);                                      //ustawia ze nie mozna otworzyc wiecej okien
+    resizeimg.setModal(false);
 
-    resizeimg.set_textedit_width(canvas->getImage().width());       //wstawia defaultowo wymiary obrazka
+    resizeimg.set_textedit_width(canvas->getImage().width());
     resizeimg.set_textedit_height(canvas->getImage().height());
 
-    if(resizeimg.exec() == QDialog::Accepted)                       //jak kliknie sie OK w dialogu resizeimg
+    if(resizeimg.exec() == QDialog::Accepted)
     {
         int w = resizeimg.get_textedit_width();
         int h = resizeimg.get_textedit_height();
@@ -512,18 +457,14 @@ void MainWindow::on_actionZmie_rozmiar_triggered()
 }
 
 
-
-//rozciagniecie obrazu - tworzy obiekt stretchimg ktory ma okno na wpisywanie procentu o ile rozszerzyc okno
-//po szerokosci i wysokosci - sczytuje procent mnozy o rozmiar obrazka i /100 co daje nowe wymiary i resizuje
-//widget i obrazek, ustawia nowy obrazek
 void MainWindow::on_actionRozci_gnij_triggered()
 {
     stretchimg stretchimg;
-    stretchimg.setModal(false);                                                     //ustawia ze nie mozna otworzyc wiecej okien
+    stretchimg.setModal(false);
 
     if(stretchimg.exec() == QDialog::Accepted)
     {
-        int w = stretchimg.get_textedit_width()*canvas->getImage().width()/100;     //nowe wymiary obrazka
+        int w = stretchimg.get_textedit_width()*canvas->getImage().width()/100;
         int h = stretchimg.get_textedit_height()*canvas->getImage().height()/100;
 
         QPixmap stretchedimg = canvas->getImage();
@@ -539,8 +480,6 @@ void MainWindow::on_actionRozci_gnij_triggered()
 }
 
 
-
-//wytnij obraz - wycina + wygasza przycisk ponownego wycinania a wlacza do wklejenia
 void MainWindow::on_actionWytnij_triggered()
 {
     canvas->cutImage();
@@ -549,11 +488,30 @@ void MainWindow::on_actionWytnij_triggered()
 }
 
 
-
-//wklej obraz - wkleja wyciety poprzednio obraz i wygasza przycisk wklejania a wlacza wycinania
 void MainWindow::on_actionWklej_triggered()
 {
     canvas->pasteImage();
     ui->actionWytnij->setEnabled(true);
     ui->actionWklej->setEnabled(false);
+}
+
+
+//menubar/colors events
+//----------------------------------------------------------------------------------
+
+
+void MainWindow::on_actionZmie_kolor_triggered()
+{
+    on_palette_2_clicked();
+    ui->palette_2->setChecked(true);
+}
+
+
+//menubar/help events
+//----------------------------------------------------------------------------------
+
+
+void MainWindow::on_actionO_Oprogramie_triggered()
+{
+    QMessageBox::information(this, "MiniPaint", "Program: Mini Paint\nAutor: Martyna Rój \nWersja: 1.07", QMessageBox::Ok );
 }
