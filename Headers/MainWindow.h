@@ -21,7 +21,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
 
     void setColorBiggerFunction();              //sprawdza ktory kolor (button) zostal wciśnięty i ten kolor ustawia na pędzlu w canvasie
     void ifFillThenColor(QColor);               //sprawdza czy nacisnieto przycisk wypelnienia wtedy ustawia kolor pedzla/wypelnienia
