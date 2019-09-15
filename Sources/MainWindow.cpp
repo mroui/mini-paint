@@ -323,19 +323,16 @@ void MainWindow::on_New_triggered()
 
 void MainWindow::on_Open_triggered()
 {
-    switch(initMBsave())
+    int choice = initMBsave();
+
+    if (choice == QMessageBox::Yes)
+        canvas->saveImage();
+
+    if (choice == QMessageBox::Yes || choice == QMessageBox::No)
     {
-        case QMessageBox::Yes:
-            canvas->saveImage();
-            canvas->openImage();
-            ui->widget->resize(canvas->getImage().width()+22,canvas->getImage().height()+22);
-            canvas->resize(canvas->getImage().width(),canvas->getImage().height());
-            break;
-        case QMessageBox::No:
-            canvas->openImage();
-            ui->widget->resize(canvas->getImage().width()+22,canvas->getImage().height()+22);
-            canvas->resize(canvas->getImage().width(),canvas->getImage().height());
-            break;
+        canvas->openImage();
+        ui->widget->resize(canvas->getImage().width()+22,canvas->getImage().height()+22);
+        canvas->resize(canvas->getImage().width(),canvas->getImage().height());
     }
 }
 
