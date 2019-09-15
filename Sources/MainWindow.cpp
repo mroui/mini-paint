@@ -111,14 +111,8 @@ void MainWindow::closeEvent(QCloseEvent * event)
     MBsave.setButtonText(QMessageBox::No, tr("No"));
     MBsave.setDefaultButton(QMessageBox::No);
 
-    switch(MBsave.exec())
-    {
-        case QMessageBox::Yes:
-            event->accept();
-            break;
-        case QMessageBox::No:
-            break;
-    }
+    if (MBsave.exec() == QMessageBox::Yes)
+        event->accept();
 }
 
 
@@ -324,12 +318,10 @@ void MainWindow::on_New_triggered()
 void MainWindow::on_Open_triggered()
 {
     int choice = initMBsave();
-
-    if (choice == QMessageBox::Yes)
-        canvas->saveImage();
-
     if (choice == QMessageBox::Yes || choice == QMessageBox::No)
     {
+        if (choice == QMessageBox::Yes)
+            canvas->saveImage();
         canvas->openImage();
         ui->widget->resize(canvas->getImage().width()+22,canvas->getImage().height()+22);
         canvas->resize(canvas->getImage().width(),canvas->getImage().height());
@@ -420,7 +412,6 @@ void MainWindow::on_Change_Size_triggered()
 {
     resizeimg resizeimg;
     resizeimg.setModal(false);
-
     resizeimg.set_textedit_width(canvas->getImage().width());
     resizeimg.set_textedit_height(canvas->getImage().height());
 
