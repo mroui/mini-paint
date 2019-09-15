@@ -14,7 +14,7 @@ public:
     ~stretchimg();
 
     void set_textedit_height(int);
-    void set_textedit_width(int);                   //ustawia/pobiera w/z polach textedit wysokosc i szerokosc
+    void set_textedit_width(int);
     int get_textedit_height();
     int get_textedit_width();
 
