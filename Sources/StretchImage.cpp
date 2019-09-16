@@ -24,13 +24,13 @@ stretchimg::~stretchimg()
 void stretchimg::set_textedit_height(int nmb)
 {
     QString nmb_str = QString::number(nmb);
-    ui->te_wysokosc->setText(nmb_str);
+    ui->te_height->setText(nmb_str);
 }
 
 
 int stretchimg::get_textedit_height()
 {
-    QString nmb_str =  ui->te_wysokosc->toPlainText();
+    QString nmb_str =  ui->te_height->toPlainText();
     int nmb = nmb_str.toInt();
     return nmb;
 }
@@ -39,13 +39,13 @@ int stretchimg::get_textedit_height()
 void stretchimg::set_textedit_width(int nmb)
 {
     QString nmb_str = QString::number(nmb);
-    ui->te_szerokosc->setText(nmb_str);
+    ui->te_width->setText(nmb_str);
 }
 
 
 int stretchimg::get_textedit_width()
 {
-    QString nmb_str =  ui->te_szerokosc->toPlainText();
+    QString nmb_str =  ui->te_width->toPlainText();
     int nmb = nmb_str.toInt();
     return nmb;
 }
