@@ -22,6 +22,9 @@
   <property name="windowTitle">
    <string>MiniPaint</string>
   </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
   <property name="toolButtonStyle">
    <enum>Qt::ToolButtonIconOnly</enum>
   </property>
