@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>resizeimg</class>
- <widget class="QDialog" name="resizeimg">
+ <class>DialogSize</class>
+ <widget class="QDialog" name="DialogSize">
   <property name="windowModality">
-   <enum>Qt::WindowModal</enum>
+   <enum>Qt::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -14,9 +14,12 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Zmień rozmiar...</string>
+   <string/>
   </property>
-  <widget class="QTextEdit" name="te_szerokosc">
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
+  <widget class="QTextEdit" name="te_width">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -47,6 +50,9 @@
      <height>28</height>
     </rect>
    </property>
+   <property name="locale">
+    <locale language="English" country="UnitedStates"/>
+   </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
    </property>
@@ -54,7 +60,7 @@
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
    </property>
   </widget>
-  <widget class="QTextEdit" name="te_wysokosc">
+  <widget class="QTextEdit" name="te_height">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -76,7 +82,7 @@
     <bool>false</bool>
    </property>
   </widget>
-  <widget class="QLabel" name="label_szerokosc">
+  <widget class="QLabel" name="label_width">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -86,10 +92,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Szerokość:</string>
+    <string>Width:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_height">
    <property name="geometry">
     <rect>
      <x>40</x>
@@ -99,10 +105,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>Wysokość:</string>
+    <string>Height:</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="label1">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -112,10 +118,10 @@
     </rect>
    </property>
    <property name="text">
-    <string>px</string>
+    <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="label2">
    <property name="geometry">
     <rect>
      <x>240</x>
@@ -125,7 +131,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>px</string>
+    <string/>
    </property>
   </widget>
  </widget>
@@ -134,7 +140,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>resizeimg</receiver>
+   <receiver>DialogSize</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -150,7 +156,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>resizeimg</receiver>
+   <receiver>DialogSize</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

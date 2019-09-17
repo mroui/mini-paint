@@ -1,26 +1,26 @@
-#ifndef RESIZEIMG_H
-#define RESIZEIMG_H
+#ifndef DIALOGSIZE_H
+#define DIALOGSIZE_H
 
 #include <QDialog>
-#include <QTextEdit>
 
-namespace Ui { class resizeimg; }
+namespace Ui { class DialogSize; }
 
-class resizeimg : public QDialog
+class DialogSize : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit resizeimg(QWidget *parent = nullptr);
-    ~resizeimg();
+    explicit DialogSize(QWidget *parent = nullptr);
+    ~DialogSize();
 
     void set_textedit_height(int);
     void set_textedit_width(int);
+    void set_labels(QString);
     int get_textedit_height();
     int get_textedit_width();
 
 private:
-    Ui::resizeimg *ui;
+    Ui::DialogSize *ui;
 };
 
-#endif // RESIZEIMG_H
+#endif // DIALOGSIZE_H
