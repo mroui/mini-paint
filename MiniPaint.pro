@@ -33,19 +33,16 @@ RESOURCES += \
     Assets/resources.qrc
 
 FORMS += \
-    Forms/MainWindow.ui \
-    Forms/ResizeImage.ui \
-    Forms/StretchImage.ui
+    Forms/DialogSize.ui \
+    Forms/MainWindow.ui
 
 HEADERS += \
     Headers/Canvas.h \
-    Headers/MainWindow.h \
-    Headers/ResizeImage.h \
-    Headers/StretchImage.h
+    Headers/DialogSize.h \
+    Headers/MainWindow.h
 
 SOURCES += \
     Main.cpp \
     Sources/Canvas.cpp \
-    Sources/MainWindow.cpp \
-    Sources/ResizeImage.cpp \
-    Sources/StretchImage.cpp
+    Sources/DialogSize.cpp \
+    Sources/MainWindow.cpp
