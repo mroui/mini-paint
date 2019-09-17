@@ -410,15 +410,16 @@ void MainWindow::on_Rotate_triggered()
 
 void MainWindow::on_Change_Size_triggered()
 {
-    resizeimg resizeimg;
-    resizeimg.setModal(false);
-    resizeimg.set_textedit_width(canvas->getImage().width());
-    resizeimg.set_textedit_height(canvas->getImage().height());
+    DialogSize dialog;
+    dialog.set_textedit_width(canvas->getImage().width());
+    dialog.set_textedit_height(canvas->getImage().height());
+    dialog.set_labels("px");
+    dialog.setWindowTitle("Change size...");
 
-    if(resizeimg.exec() == QDialog::Accepted)
+    if(dialog.exec() == QDialog::Accepted)
     {
-        int w = resizeimg.get_textedit_width();
-        int h = resizeimg.get_textedit_height();
+        int w = dialog.get_textedit_width();
+        int h = dialog.get_textedit_height();
         ui->widget->resize(w+22,h+22);
         canvas->resize(w,h);
         update();
@@ -428,13 +429,16 @@ void MainWindow::on_Change_Size_triggered()
 
 void MainWindow::on_Stretch_triggered()
 {
-    stretchimg stretchimg;
-    stretchimg.setModal(false);
+    DialogSize dialog;
+    dialog.set_textedit_width(100);
+    dialog.set_textedit_height(100);
+    dialog.set_labels("%");
+    dialog.setWindowTitle("Stretch...");
 
-    if(stretchimg.exec() == QDialog::Accepted)
+    if(dialog.exec() == QDialog::Accepted)
     {
-        int w = stretchimg.get_textedit_width()*canvas->getImage().width()/100;
-        int h = stretchimg.get_textedit_height()*canvas->getImage().height()/100;
+        int w = dialog.get_textedit_width()*canvas->getImage().width()/100;
+        int h = dialog.get_textedit_height()*canvas->getImage().height()/100;
 
         QPixmap stretchedimg = canvas->getImage();
 
