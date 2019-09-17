@@ -8,8 +8,7 @@
 #include <QScrollArea>
 
 #include "Headers/Canvas.h"
-#include "Headers/ResizeImage.h"
-#include "Headers/StretchImage.h"
+#include "Headers/DialogSize.h"
 
 namespace Ui
 { class MainWindow; }
