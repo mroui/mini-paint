@@ -16,7 +16,7 @@ class Canvas : public QWidget
 public:
     Canvas(QWidget *parent = nullptr);
 
-    void setBrushColor(QColor);
+    void setBrushColor(QColor);                      //set/get methods
     QColor getBrushColor();
 
     void setBrushWidth(int);
@@ -31,25 +31,25 @@ public:
     void setFillColor(QColor);
     QColor getFillColor();
 
-    void setShapeLine(bool);
+    void setShapeLine(bool);                        //set shapes
     void setShapePencil(bool);
     void setShapeSquare(bool);
     void setShapeCircle(bool);
     void setShapeTriangle(bool);
 
-    bool saveImage();
-    bool openImage();
-    void invertColors();
-    void cutImage();
-    void pasteImage();
+    bool saveImage();                               //save image QFileDialog with specific formats
+    bool openImage();                               //open image QFileDialog with specific formats
+    void invertColors();                            //make new one with inverted colors and change with previous
+    void cutImage();                                //save recent image & clear canvas
+    void pasteImage();                              //change recent image with the cut one
 
 
 protected:
-    void mousePressEvent(QMouseEvent *) override;
-    void mouseMoveEvent(QMouseEvent *) override;
-    void mouseReleaseEvent(QMouseEvent *) override;
-    void paintEvent(QPaintEvent *) override;
-    void resizeEvent(QResizeEvent *) override;
+    void mousePressEvent(QMouseEvent *) override;   //set clicked mouse position points
+    void mouseMoveEvent(QMouseEvent *) override;    //check mouse position changes & set new position
+    void mouseReleaseEvent(QMouseEvent *) override; //set finish of drawing
+    void paintEvent(QPaintEvent *) override;        //main drawing event
+    void resizeEvent(QResizeEvent *) override;      //resize image event
 
 
 private:
@@ -57,27 +57,27 @@ private:
     QColor fillColor;
     int brushWidth;
 
-    QPixmap drawingPixmap;
-    QPixmap cutPixmap;
+    QPixmap drawingPixmap;                          //drawing field
+    QPixmap cutPixmap;                              //cut image to paste it
 
-    bool isDrawing;
-    bool mousePressed;
-    bool isFill;
+    bool isDrawing;                                 //if is drawing - mouse pressed & moving
+    bool mousePressed;                              //if mouse is pressed
+    bool isFill;                                    //if fill button is clicked
 
-    QPoint lastPoint;
-    QLine pointsLine;
+    QPoint lastPoint;                               //last released point to draw by pencil
+    QLine pointsLine;                               //points to draw line
 
-    bool shapePencil;
+    bool shapePencil;                               //selected shapes
     bool shapeLine;
     bool shapeSquare;
     bool shapeCircle;
     bool shapeTriangle;
 
-    void resizeImage(QPixmap *, QSize);
+    void resizeImage(QPixmap *, QSize);             //create & set new image with new dimensions
 
 
 public slots:
-    void clearImage();
+    void clearImage();                              //fill image by white color
 
 };
 
