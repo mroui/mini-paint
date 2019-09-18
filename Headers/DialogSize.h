@@ -13,11 +13,11 @@ public:
     explicit DialogSize(QWidget *parent = nullptr);
     ~DialogSize();
 
-    void set_textedit_height(int);
-    void set_textedit_width(int);
-    void set_labels(QString);
+    void set_textedit_height(int);              //set/get textedit field - height of image
     int get_textedit_height();
+    void set_textedit_width(int);               //set/get textedit field - width of image
     int get_textedit_width();
+    void set_labels(QString);                   //set labels of units (px/%)
 
 private:
     Ui::DialogSize *ui;
