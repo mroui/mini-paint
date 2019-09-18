@@ -37,47 +37,47 @@ public:
     void setShapeCircle(bool);
     void setShapeTriangle(bool);
 
-    bool saveImage();                                                   //zapis obrazka
-    bool openImage();                                                   //otworzenie obrazka
-    void invertColors();                                                //odwrocenie kolorow obrazka
-    void cutImage();                                                    //wyciecie obrazka
-    void pasteImage();                                                  //wklejenie obrazka
+    bool saveImage();
+    bool openImage();
+    void invertColors();
+    void cutImage();
+    void pasteImage();
 
 
 protected:
     void mousePressEvent(QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
-    void mouseReleaseEvent(QMouseEvent *) override;                     //eventy na zmiane wymiarow/rysowanie/myszke
+    void mouseReleaseEvent(QMouseEvent *) override;
     void paintEvent(QPaintEvent *) override;
     void resizeEvent(QResizeEvent *) override;
 
 
 private:
-    QColor brushColor;           //kolor pedzla
-    QColor fillColor;      //kolor wypelnienia
-    int brushWidth;              //grubosc pedzla
+    QColor brushColor;
+    QColor fillColor;
+    int brushWidth;
 
-    QPixmap drawingPixmap;          //pixmapa po ktorej bedzie rysowane
-    QPixmap cutPixmap;    //pixmapa na wyciety obrazek
+    QPixmap drawingPixmap;
+    QPixmap cutPixmap;
 
-    bool isDrawing;           //czy jest teraz rysowane
-    bool mousePressed;      //czy wcisnieto przycisk myszki
-    bool isFill;         //czy wypelniac
+    bool isDrawing;
+    bool mousePressed;
+    bool isFill;
 
-    QPoint lastPoint;       //ostatni pkt dla olowka (dla eventow press/move/release mouse)
-    QLine pointsLine;       //zapisuje 2 punkty rysowanych linii
+    QPoint lastPoint;
+    QLine pointsLine;
 
     bool shapePencil;
     bool shapeLine;
-    bool shapeSquare;      //ksztalty
+    bool shapeSquare;
     bool shapeCircle;
     bool shapeTriangle;
 
-    void resizeImage(QPixmap *, QSize);                                 //zmiana rozmiaru obrazka o nowe wymiary
+    void resizeImage(QPixmap *, QSize);
 
 
 public slots:
-    void clearImage();                                                       //wyczyszczenie obrazka
+    void clearImage();
 
 };
 
