@@ -1,34 +1,38 @@
 #include "Headers/Canvas.h"
 
 
-//ustawia obraz do wymiaru okna i wypelnia go na bialo
-//wszystko na false, tylko ksztalt olowka na true
+//set default settings & initiate objects
 Canvas::Canvas(QWidget *parent) : QWidget(parent)
 {
     setAttribute(Qt::WA_StaticContents);
 
-    Image = QPixmap(width(),height());
-    Image.fill(Qt::white);
+    drawingPixmap = QPixmap(width(),height());
+    drawingPixmap.fill(Qt::white);
 
-    drawing = false;
+    isDrawing = false;
     mousePressed = false;
-    floodfill = false;
+    isFill = false;
 
-    shape_pencil=true;
-    shape_line = false;
-    shape_square = false;
-    shape_circle = false;
-    shape_triangle = false;
+    shapePencil=true;
+    shapeLine = false;
+    shapeSquare = false;
+    shapeCircle = false;
+    shapeTriangle = false;
 }
 
 
-//--------------------------------------------------------------------------------------------funkcje publiczne
+//set/get methods
+//---------------------------------------------------------------------------------
 
+
+
+
+///////////////////////todo
 
 //czyszczenie obrazka
-void Canvas::clear()
+void Canvas::clearImage()
 {
-    Image.fill(Qt::white);
+    drawingPixmap.fill(Qt::white);
     update();
 }
 
@@ -41,7 +45,7 @@ bool Canvas::saveImage()
 
     if (!imagePath.isEmpty())
     {
-      if (Image.save(imagePath))
+      if (drawingPixmap.save(imagePath))
         return true;
     }
     return false;
@@ -56,7 +60,7 @@ bool Canvas::openImage()
 
     if (!imagePath.isEmpty())
     {
-      if (Image.load(imagePath))
+      if (drawingPixmap.load(imagePath))
         return true;
     }
     return false;
@@ -67,7 +71,7 @@ bool Canvas::openImage()
 //odwrocenie kolorow obrazka - tworzy nowy obraz z odwroconymi kolorami i zamienia z poprzednim
 void Canvas::invertColors()
 {
-    QImage image = Image.toImage();
+    QImage image = drawingPixmap.toImage();
     image.invertPixels(QImage::InvertRgba);
     setImage(QPixmap::fromImage(image));
 
@@ -79,8 +83,8 @@ void Canvas::invertColors()
 //wycinanie obrazka - zapisuje obecny obraz w CuttedImage i czysci okno
 void Canvas::cutImage()
 {
-    CuttedImage = Image;
-    clear();
+    cutPixmap = drawingPixmap;
+    clearImage();
 }
 
 
@@ -88,9 +92,9 @@ void Canvas::cutImage()
 //wklejenie obrazka - wkleja na obecny obraz ten wycięty zapisany w pamięci - w lewy górny róg
 void Canvas::pasteImage()
 {
-    QPainter pasteontop(&Image);
-    QRect rect = CuttedImage.rect();
-    pasteontop.drawPixmap(rect,CuttedImage,rect);
+    QPainter pasteontop(&drawingPixmap);
+    QRect rect = cutPixmap.rect();
+    pasteontop.drawPixmap(rect,cutPixmap,rect);
 
     update();
 }
@@ -107,13 +111,13 @@ void Canvas::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
     {
-        if (shape_pencil)
+        if (shapePencil)
                 lastPoint = event->pos();
 
         mousePressed = true;
         pointsLine.setP1(event->pos());
         pointsLine.setP2(event->pos());
-        drawing = true;
+        isDrawing = true;
     }
 }
 
@@ -123,7 +127,7 @@ void Canvas::mousePressEvent(QMouseEvent *event)
 //wtedy sczytuje nowa pozycje kursora i wpisuje do punktu drugiego linii
 void Canvas::mouseMoveEvent(QMouseEvent *event)
 {
-    if ((event->buttons() & Qt::LeftButton) && drawing)
+    if ((event->buttons() & Qt::LeftButton) && isDrawing)
         pointsLine.setP2(event->pos());
 
     update();
@@ -135,9 +139,9 @@ void Canvas::mouseMoveEvent(QMouseEvent *event)
 //ustawia rysowanie i wcisnieta myszke na false
 void Canvas::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton && drawing)
+    if (event->button() == Qt::LeftButton && isDrawing)
     {
-        drawing = false;
+        isDrawing = false;
         mousePressed = false;
         update();
     }
@@ -160,32 +164,32 @@ void Canvas::paintEvent(QPaintEvent *event)
     QRect dirtyRect = event->rect();
     QPainter painter(this);
 
-    painter.drawImage(dirtyRect,Image.toImage(),dirtyRect); //bierze wymiary okna przez event->rect() i rysuje poczatkowo czysty obraz(poczatkowe uruchomienie programu!)
+    painter.drawImage(dirtyRect,drawingPixmap.toImage(),dirtyRect); //bierze wymiary okna przez event->rect() i rysuje poczatkowo czysty obraz(poczatkowe uruchomienie programu!)
 
 
         if(mousePressed)                                                                            //sprawdzajac czy jest wcisnieta myszka
         {
             wasPressed = true;                                                                      //ustawia odcisniecie na true
-            painter.setPen(QPen(Color, Width, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));         //ustawia wlasciwosci pedzla
+            painter.setPen(QPen(brushColor, brushWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));         //ustawia wlasciwosci pedzla
 
 
-            if(shape_pencil)                                                                        //jesli wybrany ksztalt olowka
+            if(shapePencil)                                                                        //jesli wybrany ksztalt olowka
             {
-                QPainter paintimg(&Image);                                                          //to rysowany jest bezposrednio na obrazku
-                paintimg.setPen(QPen(Color, Width, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));    //ustawia jego wlasciwosci pedzla
+                QPainter paintimg(&drawingPixmap);                                                          //to rysowany jest bezposrednio na obrazku
+                paintimg.setPen(QPen(brushColor, brushWidth, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));    //ustawia jego wlasciwosci pedzla
                 paintimg.drawLine(lastPoint, pointsLine.p2());                                      //i rysuje co kazdy ruch myszki o nowe punkty
                 lastPoint = pointsLine.p2();                                                        //przypisujac ostatni pkt punktowi p2
             }
 
-            else if(shape_line)
+            else if(shapeLine)
             {
-                painter.drawImage(dirtyRect,Image.toImage(),dirtyRect);                             //dla reszty ksztaltow rysowane bedzie na osobnych pixmapach
+                painter.drawImage(dirtyRect,drawingPixmap.toImage(),dirtyRect);                             //dla reszty ksztaltow rysowane bedzie na osobnych pixmapach
                 painter.drawLine(pointsLine);                                                       //rysuje linie o 2 punktach z QLine pointsLine
             }
 
-            else if(shape_square)
+            else if(shapeSquare)
             {
-                painter.drawImage(dirtyRect,Image.toImage(),dirtyRect);
+                painter.drawImage(dirtyRect,drawingPixmap.toImage(),dirtyRect);
 
                 QRect rect;
                 rect.setTopLeft(pointsLine.p1());                                                   //dla kwadratu bierze punkty lewy górny i dolny prawy
@@ -193,18 +197,18 @@ void Canvas::paintEvent(QPaintEvent *event)
 
                 painter.drawRect(rect);                                                             //rysuje prostokat
 
-                if (floodfill)                                                                      //jesli wlaczone jest wypelnianie
+                if (isFill)                                                                      //jesli wlaczone jest wypelnianie
                 {
-                    QBrush fillbrush(BrushColor);
+                    QBrush fillbrush(fillColor);
                     QPainterPath path;
-                    path.addRoundedRect(rect,Width, Width);
+                    path.addRoundedRect(rect,brushWidth, brushWidth);
                     painter.fillPath(path,fillbrush);                                               //to wypelnia prostokat kolorem wypelnienia
                 }
             }
 
-            else if(shape_triangle)
+            else if(shapeTriangle)
             {
-                painter.drawImage(dirtyRect,Image.toImage(),dirtyRect);
+                painter.drawImage(dirtyRect,drawingPixmap.toImage(),dirtyRect);
 
                 QPoint *points = new QPoint[3];
                 points[0] = QPoint(pointsLine.x1(),pointsLine.y2());
@@ -216,18 +220,18 @@ void Canvas::paintEvent(QPaintEvent *event)
 
                 painter.drawPolygon(polygon);                                                       //i rysowany jest na obrazku
 
-                if (floodfill)
+                if (isFill)
                 {
-                    QBrush fillbrush(BrushColor);
+                    QBrush fillbrush(fillColor);
                     QPainterPath path;
                     path.addPolygon(polygon);
                     painter.fillPath(path,fillbrush);
                 }
             }
 
-            else if(shape_circle)
+            else if(shapeCircle)
             {
-                painter.drawImage(dirtyRect,Image.toImage(),dirtyRect);
+                painter.drawImage(dirtyRect,drawingPixmap.toImage(),dirtyRect);
 
                 QRect rect;
                 rect.setTopLeft(pointsLine.p1());
@@ -235,9 +239,9 @@ void Canvas::paintEvent(QPaintEvent *event)
 
                 painter.drawEllipse(rect);
 
-                if (floodfill)
+                if (isFill)
                 {
-                    QBrush fillbrush(BrushColor);
+                    QBrush fillbrush(fillColor);
                     QPainterPath path;
                     path.addEllipse(rect);
                     painter.fillPath(path,fillbrush);
@@ -249,22 +253,22 @@ void Canvas::paintEvent(QPaintEvent *event)
         {
             wasPressed = false;
 
-            QPainter PixmapPainter(&Image);
-            PixmapPainter.setPen(QPen(Color, Width, Qt::SolidLine, Qt::RoundCap,Qt::RoundJoin));
+            QPainter PixmapPainter(&drawingPixmap);
+            PixmapPainter.setPen(QPen(brushColor, brushWidth, Qt::SolidLine, Qt::RoundCap,Qt::RoundJoin));
 
-            if(shape_pencil)
+            if(shapePencil)
             {
-                painter.drawImage(dirtyRect,Image.toImage(),dirtyRect);                               //to rysuje normalnie obraz
+                painter.drawImage(dirtyRect,drawingPixmap.toImage(),dirtyRect);                               //to rysuje normalnie obraz
             }
 
-            else if(shape_line)
+            else if(shapeLine)
             {
                 PixmapPainter.drawLine(pointsLine);                                                   //dla reszty ksztaltow najpierw rysuje na pixmapie
-                painter.drawPixmap(0, 0, Image);                                                      //a potem obrazek wypełnia pixmapą
+                painter.drawPixmap(0, 0, drawingPixmap);                                                      //a potem obrazek wypełnia pixmapą
             }                                                                                         //jest to by moc najpierw wybrac gdzie ksztalt ustawimy
                                                                                                       //a dopiero potem go narysowac
 
-            else if(shape_square)
+            else if(shapeSquare)
             {
                 QRect rect;
                 rect.setTopLeft(pointsLine.p1());
@@ -272,18 +276,18 @@ void Canvas::paintEvent(QPaintEvent *event)
 
                 PixmapPainter.drawRect(rect);
 
-                if (floodfill)
+                if (isFill)
                 {
-                    QBrush fillbrush(BrushColor);
+                    QBrush fillbrush(fillColor);
                     QPainterPath path;
-                    path.addRoundedRect(rect,Width, Width);
+                    path.addRoundedRect(rect,brushWidth, brushWidth);
                     PixmapPainter.fillPath(path,fillbrush);
                 }
 
-                painter.drawPixmap(0, 0, Image);
+                painter.drawPixmap(0, 0, drawingPixmap);
             }
 
-            else if(shape_circle)
+            else if(shapeCircle)
             {
                 QRect rect;
                 rect.setTopLeft(pointsLine.p1());
@@ -291,18 +295,18 @@ void Canvas::paintEvent(QPaintEvent *event)
 
                 PixmapPainter.drawEllipse(rect);
 
-                if (floodfill)
+                if (isFill)
                 {
-                    QBrush fillbrush(BrushColor);
+                    QBrush fillbrush(fillColor);
                     QPainterPath path;
                     path.addEllipse(rect);
                     PixmapPainter.fillPath(path,fillbrush);
                 }
 
-                painter.drawPixmap(0, 0, Image);
+                painter.drawPixmap(0, 0, drawingPixmap);
             }
 
-            else if(shape_triangle)
+            else if(shapeTriangle)
             {
                 QRect rect;
                 rect.setTopLeft(pointsLine.p1());
@@ -318,15 +322,15 @@ void Canvas::paintEvent(QPaintEvent *event)
 
                 PixmapPainter.drawPolygon(polygon);
 
-                if (floodfill)
+                if (isFill)
                 {
-                    QBrush fillbrush(BrushColor);
+                    QBrush fillbrush(fillColor);
                     QPainterPath path;
                     path.addPolygon(polygon);
                     PixmapPainter.fillPath(path,fillbrush);
                 }
 
-                painter.drawPixmap(0, 0, Image);
+                painter.drawPixmap(0, 0, drawingPixmap);
             }
         }
 }
@@ -337,20 +341,20 @@ void Canvas::paintEvent(QPaintEvent *event)
 //jesli sa mniejsze to bierze minimalna wartosc
 void Canvas::resizeEvent(QResizeEvent *event)
 {
-    if (width() > Image.width() || height() > Image.height())
+    if (width() > drawingPixmap.width() || height() > drawingPixmap.height())
     {
-        int newWidth = qMax(width(), Image.width());
-        int newHeight = qMax(height(), Image.height());
+        int newWidth = qMax(width(), drawingPixmap.width());
+        int newHeight = qMax(height(), drawingPixmap.height());
 
-        resizeImage(&Image, QSize(newWidth, newHeight));
+        resizeImage(&drawingPixmap, QSize(newWidth, newHeight));
         update();
     }
-    else if (width() < Image.width() || height() < Image.height())
+    else if (width() < drawingPixmap.width() || height() < drawingPixmap.height())
     {
-        int newWidth = qMin(width(), Image.width());
-        int newHeight = qMin(height(), Image.height());
+        int newWidth = qMin(width(), drawingPixmap.width());
+        int newHeight = qMin(height(), drawingPixmap.height());
 
-        resizeImage(&Image, QSize(newWidth, newHeight));
+        resizeImage(&drawingPixmap, QSize(newWidth, newHeight));
         update();
     }
     QWidget::resizeEvent(event);

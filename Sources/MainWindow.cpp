@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->gridLayout->addWidget(sizeGrip, 0,0,1,1,Qt::AlignBottom | Qt::AlignRight);
 
     on_Black_clicked();
-    canvas->setWidth(1);
+    canvas->setBrushWidth(1);
 
     ui->Cut->setEnabled(true);
     ui->Paste->setEnabled(false);
@@ -64,15 +64,15 @@ void MainWindow::setBrushColor()
     else if (ui->Palette->isChecked())
         color = previousPaletteColor;
 
-    canvas->setColor(color);
+    canvas->setBrushColor(color);
 }
 
 
 void MainWindow::setFillColor(QColor color)
 {
     if(!ui->Fill->isChecked())
-        canvas->setColor(color);
-    else canvas->setBrushColor(color);
+        canvas->setBrushColor(color);
+    else canvas->setFillColor(color);
 }
 
 
@@ -194,14 +194,14 @@ void MainWindow::on_Palette_clicked()
 
 void MainWindow::on_Weight_valueChanged(int width)
 {
-    canvas->setWidth(width);
+    canvas->setBrushWidth(width);
 }
 
 
 void MainWindow::on_Rubber_clicked()
 {
     on_Pencil_clicked();  //same settings like pencil
-    canvas->setColor(Qt::white);
+    canvas->setBrushColor(Qt::white);
 }
 
 
@@ -272,13 +272,13 @@ void MainWindow::on_Fill_clicked()
         else if (ui->Palette->isChecked())
             brushcolor = previousPaletteColor;
 
-        canvas->setBrushColor(brushcolor);
+        canvas->setFillColor(brushcolor);
     }
     else
     {
         canvas->setFloodFill(false);
 
-        QColor color = canvas->getColor();
+        QColor color = canvas->getBrushColor();
         if (color == ui->White->palette().color(QPalette::Button))
             ui->White->setChecked(true);
         else if (color == ui->Black->palette().color(QPalette::Button))
@@ -375,10 +375,10 @@ void MainWindow::on_Clear_Image_triggered()
     {
         case QMessageBox::Yes:
             if(canvas->saveImage())
-                canvas->clear();
+                canvas->clearImage();
             break;
         case QMessageBox::No:
-            canvas->clear();
+            canvas->clearImage();
             break;
     }
 }
@@ -402,7 +402,7 @@ void MainWindow::on_Rotate_triggered()
     int h = rotatedImg.height();
     ui->widget->resize(w+22, h+22);
     canvas->resize(w,h);
-    canvas->clear();
+    canvas->clearImage();
     canvas->setImage(rotatedImg);
     update();
 }
@@ -442,7 +442,7 @@ void MainWindow::on_Stretch_triggered()
 
         QPixmap stretchedimg = canvas->getImage();
 
-        canvas->clear();
+        canvas->clearImage();
         canvas->resize(w,h);
         ui->widget->resize(w+22,h+22);
 
