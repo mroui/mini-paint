@@ -25,6 +25,83 @@ Canvas::Canvas(QWidget *parent) : QWidget(parent)
 //---------------------------------------------------------------------------------
 
 
+void Canvas::setBrushColor(QColor color)
+{
+    brushColor = color;
+}
+
+QColor Canvas::getBrushColor()
+{
+    return brushColor;
+}
+
+void Canvas::setBrushWidth(int width)
+{
+    brushWidth = width;
+}
+
+int Canvas::getBrushWidth()
+{
+    return brushWidth;
+}
+
+void Canvas::setImage(QPixmap img)
+{
+    drawingPixmap = img;
+}
+
+QPixmap Canvas::getImage()
+{
+    return drawingPixmap;
+}
+
+void Canvas::setFloodFill(bool f)
+{
+    isFill = f;
+}
+
+bool Canvas::getFloodFill()
+{
+    return isFill;
+}
+
+void Canvas::setFillColor(QColor color)
+{
+    fillColor = color;
+}
+
+QColor Canvas::getFillColor()
+{
+    return fillColor;
+}
+
+void Canvas::setShapeLine(bool x)
+{
+    shapeLine = x;
+}
+
+void Canvas::setShapePencil(bool x)
+{
+    shapePencil = x;
+}
+
+void Canvas::setShapeSquare(bool x)
+{
+    shapeSquare = x;
+}
+
+void Canvas::setShapeCircle(bool x)
+{
+    shapeCircle = x;
+}
+
+void Canvas::setShapeTriangle(bool x)
+{
+    shapeTriangle = x;
+}
+
+
+
 
 
 ///////////////////////todo
