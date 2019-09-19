@@ -16,7 +16,7 @@ class Canvas : public QWidget
 public:
     Canvas(QWidget *parent = nullptr);
 
-    void setBrushColor(QColor);                      //set/get methods
+    void setBrushColor(QColor);                      //set/get methods of basic variables
     QColor getBrushColor();
 
     void setBrushWidth(int);
@@ -31,15 +31,15 @@ public:
     void setFillColor(QColor);
     QColor getFillColor();
 
-    void setShapeLine(bool);                        //set shapes
+    void setShapeLine(bool);                        //set selected shapes
     void setShapePencil(bool);
     void setShapeSquare(bool);
     void setShapeCircle(bool);
     void setShapeTriangle(bool);
 
-    bool saveImage();                               //save image QFileDialog with specific formats
-    bool openImage();                               //open image QFileDialog with specific formats
-    void invertColors();                            //make new one with inverted colors and change with previous
+    bool saveImage();                               //save image - QFileDialog with specific formats
+    bool openImage();                               //open image - QFileDialog with specific formats
+    void invertColors();                            //make new one image with inverted colors and change with previous
     void cutImage();                                //save recent image & clear canvas
     void pasteImage();                              //change recent image with the cut one
 
@@ -47,7 +47,7 @@ public:
 protected:
     void mousePressEvent(QMouseEvent *) override;   //set clicked mouse position points
     void mouseMoveEvent(QMouseEvent *) override;    //check mouse position changes & set new position
-    void mouseReleaseEvent(QMouseEvent *) override; //set finish of drawing
+    void mouseReleaseEvent(QMouseEvent *) override; //set finish of drawing - mouse moving
     void paintEvent(QPaintEvent *) override;        //main drawing event
     void resizeEvent(QResizeEvent *) override;      //resize image event
 
