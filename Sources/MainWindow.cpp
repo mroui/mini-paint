@@ -486,5 +486,5 @@ void MainWindow::on_Edit_Color_triggered()
 
 void MainWindow::on_About_triggered()
 {
-    QMessageBox::information(this, "MiniPaint", "Program: MiniPaint\nAuthor: Martyna Roj \nVersion: 1.07", QMessageBox::Ok );
+    QMessageBox::information(this, "MiniPaint", "Program: MiniPaint\nAuthor: Martyna Roj \nVersion: 2.0", QMessageBox::Ok );
 }
