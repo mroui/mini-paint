@@ -80,14 +80,14 @@ void MainWindow::setShapes(QString string)
 {
     setBrushColor();
 
-    canvas->setShapePen(false);
+    canvas->setShapePencil(false);
     canvas->setShapeLine(false);
     canvas->setShapeSquare(false);
     canvas->setShapeCircle(false);
     canvas->setShapeTriangle(false);
 
     if (string == "Pencil")
-        canvas->setShapePen(true);
+        canvas->setShapePencil(true);
     else if (string == "Line")
         canvas->setShapeLine(true);
     else if (string == "Square")
