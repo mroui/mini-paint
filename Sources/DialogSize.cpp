@@ -4,6 +4,7 @@
 #include <QIntValidator>
 
 
+//set default settings & initiate objects
 DialogSize::DialogSize(QWidget *parent) : QDialog(parent), ui(new Ui::DialogSize)
 {
     ui->setupUi(this);
