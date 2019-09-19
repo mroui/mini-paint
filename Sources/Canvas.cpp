@@ -168,7 +168,6 @@ void Canvas::pasteImage()
     QPainter pasteontop(&drawingPixmap);
     QRect rect = cutPixmap.rect();
     pasteontop.drawPixmap(rect,cutPixmap,rect);
-
     update();
 }
 
@@ -199,7 +198,6 @@ void Canvas::mouseMoveEvent(QMouseEvent *event)
 {
     if ((event->buttons() & Qt::LeftButton) && isDrawing)
         pointsLine.setP2(event->pos());
-
     update();
 }
 
@@ -257,7 +255,7 @@ void Canvas::paintEvent(QPaintEvent *event)
             rect.setBottomRight(pointsLine.p2());
             painter.drawRect(rect);
 
-            if (isFill) //check if fill
+            if (isFill) //check if fill in square, triangle, circle
             {
                 QBrush fillbrush(fillColor);
                 QPainterPath path;
@@ -393,7 +391,6 @@ void Canvas::resizeEvent(QResizeEvent *event)
     {
         int newWidth = qMax(width(), drawingPixmap.width());
         int newHeight = qMax(height(), drawingPixmap.height());
-
         resizeImage(&drawingPixmap, QSize(newWidth, newHeight));
         update();
     }
@@ -401,7 +398,6 @@ void Canvas::resizeEvent(QResizeEvent *event)
     {
         int newWidth = qMin(width(), drawingPixmap.width());
         int newHeight = qMin(height(), drawingPixmap.height());
-
         resizeImage(&drawingPixmap, QSize(newWidth, newHeight));
         update();
     }
