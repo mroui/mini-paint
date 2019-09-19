@@ -22,13 +22,13 @@ DialogSize::~DialogSize()
 void DialogSize::set_textedit_height(int nmb)
 {
     QString nmb_str = QString::number(nmb);
-    ui->te_height->setText(nmb_str);
+    ui->text_height->setText(nmb_str);
 }
 
 
 int DialogSize::get_textedit_height()
 {
-    QString nmb_str =  ui->te_height->toPlainText();
+    QString nmb_str =  ui->text_height->text();
     int nmb = nmb_str.toInt();
     return nmb;
 }
@@ -37,13 +37,13 @@ int DialogSize::get_textedit_height()
 void DialogSize::set_textedit_width(int nmb)
 {
     QString nmb_str = QString::number(nmb);
-    ui->te_width->setText(nmb_str);
+    ui->text_width->setText(nmb_str);
 }
 
 
 int DialogSize::get_textedit_width()
 {
-    QString nmb_str =  ui->te_width->toPlainText();
+    QString nmb_str =  ui->text_width->text();
     int nmb = nmb_str.toInt();
     return nmb;
 }

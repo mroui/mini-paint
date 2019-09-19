@@ -19,28 +19,6 @@
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
   </property>
-  <widget class="QTextEdit" name="te_width">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>100</y>
-     <width>191</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="verticalScrollBarPolicy">
-    <enum>Qt::ScrollBarAsNeeded</enum>
-   </property>
-   <property name="horizontalScrollBarPolicy">
-    <enum>Qt::ScrollBarAsNeeded</enum>
-   </property>
-   <property name="lineWrapMode">
-    <enum>QTextEdit::NoWrap</enum>
-   </property>
-   <property name="acceptRichText">
-    <bool>false</bool>
-   </property>
-  </widget>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
@@ -58,28 +36,6 @@
    </property>
    <property name="standardButtons">
     <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="te_height">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>40</y>
-     <width>191</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="verticalScrollBarPolicy">
-    <enum>Qt::ScrollBarAsNeeded</enum>
-   </property>
-   <property name="horizontalScrollBarPolicy">
-    <enum>Qt::ScrollBarAsNeeded</enum>
-   </property>
-   <property name="lineWrapMode">
-    <enum>QTextEdit::NoWrap</enum>
-   </property>
-   <property name="acceptRichText">
-    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLabel" name="label_width">
@@ -132,6 +88,26 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="text_height">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>40</y>
+     <width>191</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="text_width">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>100</y>
+     <width>191</width>
+     <height>31</height>
+    </rect>
    </property>
   </widget>
  </widget>
