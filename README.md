@@ -53,8 +53,6 @@ cd mini-paint
 #start by Qt Creator project file
 qt-creator mini-paint.pro
 ```
-# clone the c-vtapi library
-git clone https://github.com/VirusTotal/c-vtapi.git
 ## License
     You can check out the full license [here](./LICENSE)
 This project is licensed under the terms of the MIT license.
