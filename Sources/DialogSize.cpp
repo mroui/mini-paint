@@ -1,11 +1,15 @@
 #include "Headers/DialogSize.h"
 #include "ui_DialogSize.h"
 
+#include <QIntValidator>
+
 
 DialogSize::DialogSize(QWidget *parent) : QDialog(parent), ui(new Ui::DialogSize)
 {
     ui->setupUi(this);
     setWindowFlags(Qt::WindowTitleHint | Qt::WindowCloseButtonHint | Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
+    ui->text_width->setValidator( new QIntValidator(0, 9999, this) );
+    ui->text_height->setValidator( new QIntValidator(0, 9999, this) );
 }
 
 
