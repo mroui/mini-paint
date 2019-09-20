@@ -10,13 +10,18 @@
 * [License](#license)
 
 ## Introduction
-<img align="center" src="./Assets/Images/eraser.png" alt="Rubber image">
+![alt text](./Assets/Images/eraser.png "Rubber image") 
+</br>
 **MiniPaint** is an application that reminds **Paint** app known from *Windows XP*. It does not have all functionalities like his parent, only some of them.
 Hence the conclusion that *it is an application for drawing and editing images*.
-<img align="center" src="./Assets/Images/pencil.png" alt="Pencil image">
+</br>
+![alt text](./Assets/Images/pencil.png "Pencil image")
+</br>
 There are a color palette and set of basic shapes and tools at our disposal. Created images can be saved to disk in several formats. It is possible to open existing images and edit them.
 In addition, we can rotate, stretch, cut image and much more. 
-<img align="center" src="./Assets/Images/paintbucket.png" alt="Paint bucket image">
+</br>
+![alt text](./Assets/Images/paintbucket.png "Paint bucket image")
+</br>
 It is an **desktop, window application** created in **C++** using **Qt**. Application was tested on *Windows 10 64bit*.
 
 *Project was made for passing the subject in college, but it was so interesting, that I willingly developed it with additional properties.*
@@ -40,13 +45,17 @@ The main purpose is **drawing** and **painting**.
 * Qt Creator 4.10.0
 
 ## Screenshots
-<img align="center" src="https://i.ibb.co/pbgFFWq/Screen1.png" alt="Cosmos MiniPaint image">
-<img align="center" src="https://i.ibb.co/F3CNVVW/Screen3.png" alt="Motor, clouds MiniPaint image">
-<img align="center" src="https://i.ibb.co/4gHCKLm/Screen2.png" alt="Flower MiniPaint image">
+![alt text](https://i.ibb.co/pbgFFWq/Screen1.png "Cosmos MiniPaint image")
+![alt text](https://i.ibb.co/F3CNVVW/Screen3.png "Motor, clouds MiniPaint image")
+![alt text](https://i.ibb.co/4gHCKLm/Screen2.png "Flower MiniPaint image")
 
 ## Setup
-* Install Qt 5.3 or newer http://qt-project.org/downloads`
+* Install Qt 5.13 or newer [here](http://qt-project.org/downloads)
+
 ```
+#clone repository mini-paint
+git clone https://github.com/mroui/mini-paint.git
+
 #enter main folder
 cd mini-paint
 
@@ -54,5 +63,4 @@ cd mini-paint
 qt-creator mini-paint.pro
 ```
 ## License
-    You can check out the full license [here](./LICENSE)
 This project is licensed under the terms of the MIT license.
