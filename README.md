@@ -47,6 +47,7 @@ The main purpose is **drawing** and **painting**.
 ## Screenshots
 ![alt text](https://i.ibb.co/pbgFFWq/Screen1.png "Cosmos MiniPaint image")
 ![alt text](https://i.ibb.co/F3CNVVW/Screen3.png "Motor, clouds MiniPaint image")
+![alt text](https://i.ibb.co/37R6pRR/Screen4.png "Inverted colors sea image")
 ![alt text](https://i.ibb.co/4gHCKLm/Screen2.png "Flower MiniPaint image")
 
 ## Setup
