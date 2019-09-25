@@ -1,4 +1,6 @@
-# MiniPaint
+<h1 align="center">
+	MiniPaint
+</h1>
 > This is an desktop application based on a Paint XP application from Windows XP. It provides main functions you'd expect from a Paint, such as drawing, painting using shapes like circle, rectangle or triangle, etc. You can also edit image by stretch it, change size, invert colors, save it on your computer, open existing image and more. 
 
 ## Table of contents
