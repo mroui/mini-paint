@@ -13,17 +13,17 @@
 * [License](#license)
 
 ## Introduction
-![alt text](./Assets/Images/eraser.png "Rubber image") 
+![rubber image](./Assets/Images/eraser.png "Rubber image") 
 </br>
 **MiniPaint** is an application that reminds **Paint** app known from *Windows XP*. It does not have all functionalities like his parent, only some of them.
 Hence the conclusion that *it is an application for drawing and editing images*.
 </br>
-![alt text](./Assets/Images/pencil.png "Pencil image")
+![pencil image](./Assets/Images/pencil.png "Pencil image")
 </br>
 There are a color palette and set of basic shapes and tools at our disposal. Created images can be saved to disk in several formats. It is possible to open existing images and edit them.
 In addition, we can rotate, stretch, cut image and much more. 
 </br>
-![alt text](./Assets/Images/paintbucket.png "Paint bucket image")
+![paint bucket image](./Assets/Images/paintbucket.png "Paint bucket image")
 </br>
 It is an **desktop, window application** created in **C++** using **Qt**. Application was tested on *Windows 10 64bit*.
 
@@ -48,10 +48,10 @@ The main purpose is **drawing** and **painting**.
 * Qt Creator 4.10.0
 
 ## Screenshots
-![alt text](./Assets/Screenshots/mini-paint-screen-cosmos.png "Cosmos MiniPaint image")
-![alt text](./Assets/Screenshots/mini-paint-screen-motor.png "Motor, clouds MiniPaint image")
-![alt text](./Assets/Screenshots/mini-paint-screen-sea.png "Inverted colors sea image")
-![alt text](./Assets/Screenshots/mini-paint-screen-flower.png "Flower MiniPaint image")
+![cosmos image](./Assets/Screenshots/minipaint-screen-cosmos.png "Cosmos MiniPaint image")
+![motor image](./Assets/Screenshots/minipaint-screen-motor.png "Motor, clouds MiniPaint image")
+![sea image](./Assets/Screenshots/minipaint-screen-sea.png "Inverted colors sea image")
+![flower image](./Assets/Screenshots/minipaint-screen-flower.png "Flower MiniPaint image")
 
 ## Setup
 * [Install Qt 5.13 or newer](http://qt-project.org/downloads)
