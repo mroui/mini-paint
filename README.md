@@ -1,6 +1,7 @@
 <h1 align="center">
 	MiniPaint
 </h1>
+
 > This is an desktop application based on a Paint XP application from Windows XP. It provides main functions you'd expect from a Paint, such as drawing, painting using shapes like circle, rectangle or triangle, etc. You can also edit image by stretch it, change size, invert colors, save it on your computer, open existing image and more. 
 
 ## Table of contents
@@ -47,13 +48,13 @@ The main purpose is **drawing** and **painting**.
 * Qt Creator 4.10.0
 
 ## Screenshots
-![alt text](https://i.ibb.co/pbgFFWq/Screen1.png "Cosmos MiniPaint image")
-![alt text](https://i.ibb.co/F3CNVVW/Screen3.png "Motor, clouds MiniPaint image")
-![alt text](https://i.ibb.co/37R6pRR/Screen4.png "Inverted colors sea image")
-![alt text](https://i.ibb.co/4gHCKLm/Screen2.png "Flower MiniPaint image")
+![alt text](./Assets/Screenshots/mini-paint-screen-cosmos.png "Cosmos MiniPaint image")
+![alt text](./Assets/Screenshots/mini-paint-screen-motor.png "Motor, clouds MiniPaint image")
+![alt text](./Assets/Screenshots/mini-paint-screen-sea.png "Inverted colors sea image")
+![alt text](./Assets/Screenshots/mini-paint-screen-flower.png "Flower MiniPaint image")
 
 ## Setup
-* Install Qt 5.13 or newer [here](http://qt-project.org/downloads)
+* [Install Qt 5.13 or newer](http://qt-project.org/downloads)
 
 ```
 #clone repository mini-paint
